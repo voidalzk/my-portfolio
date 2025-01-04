@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --night: #111511ff;
+  --eerie-black: #151915ff;
+  --eerie-black-2: #1e251fff;
+  --black-olive: #212922ff;
+  --dark-green: #25392cff;
+  --brunswick-green: #294936ff;
+  --viridian: #5b8266ff;
+  --cambridge-blue: #72927fff;
+
+  --night: hsla(120, 11%, 7%, 1);
+  --eerie-black: hsla(120, 9%, 9%, 1);
+  --eerie-black-2: hsla(129, 10%, 13%, 1);
+  --black-olive: hsla(127, 11%, 15%, 1);
+  --dark-green: hsla(141, 21%, 18%, 1);
+  --brunswick-green: hsla(144, 28%, 22%, 1);
+  --viridian: hsla(137, 18%, 43%, 1);
+  --cambridge-blue: hsla(144, 13%, 51%, 1);
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--night);
+    color: var(--cambridge-blue);
+    font-family: sans-serif;
+  }
