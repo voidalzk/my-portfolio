@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
       <div class="container">
         <h2 class="section-title">Sobre Mim</h2>
         <div class="about-content">
-        <img src="assets/profile.jpeg" alt="Minha foto" class="profile-image">
+        <img src="assets/profile2.jpeg" alt="Minha foto" class="profile-image">
           <div class="about-text">
             <p>Olá! Sou Gabriel Francelino Voidaleski, um desenvolvedor Full Stack de 20 anos apaixonado por criar soluções web inovadoras e eficientes.</p>
             <p>Tenho experiência como estagiário no Ministério Público do Estado do Paraná, onde desenvolvi aplicações de suporte administrativo e implementei automatizações para otimizar processos.</p>
