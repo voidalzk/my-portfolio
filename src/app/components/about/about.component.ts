@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
       <div class="container">
         <h2 class="section-title">Sobre Mim</h2>
         <div class="about-content">
+        <img src="assets/profile.jpeg" alt="Minha foto" class="profile-image">
           <div class="about-text">
             <p>Olá! Sou Gabriel Francelino Voidaleski, um desenvolvedor Full Stack de 20 anos apaixonado por criar soluções web inovadoras e eficientes.</p>
             <p>Tenho experiência como estagiário no Ministério Público do Estado do Paraná, onde desenvolvi aplicações de suporte administrativo e implementei automatizações para otimizar processos.</p>
@@ -38,6 +39,14 @@ import { CommonModule } from '@angular/common';
       gap: 2rem;
       max-width: 800px;
       margin: 0 auto;
+      align-items: center;
+    }
+
+    .profile-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
     }
 
     .about-text p {
@@ -45,6 +54,7 @@ import { CommonModule } from '@angular/common';
       font-size: 1.1rem;
       line-height: 1.8;
       color: var(--text);
+      text-indent: 20px;
     }
 
     @media (max-width: 768px) {
@@ -52,10 +62,17 @@ import { CommonModule } from '@angular/common';
         padding: 4rem 0;
       }
 
-      .section-title {
-        font-size: 2rem;
+      .about-content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .profile-image {
+        width: 100px;
+        height: 100px;
       }
     }
   `]
 })
-export class AboutComponent {}
+export class AboutComponent {
+}

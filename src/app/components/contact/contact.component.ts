@@ -14,11 +14,11 @@ import { FormsModule } from '@angular/forms';
           <div class="contact-info">
             <div class="contact-item">
               <i class="fas fa-envelope"></i>
-              <a href="mailto:gabriel.voidaleski@gmail.com">voidalzk</a>
+              <a href="mailto:gabriel.voidaleski@gmail.com">voidalzk&#64;gmail.com</a>
             </div>
             <div class="contact-item">
               <i class="fab fa-linkedin"></i>
-              <a href="https://www.linkedin.com/in/gabriel-voidaleski" target="_blank">LinkedIn</a>
+              <a href="https://www.linkedin.com/in/gabriel-voidaleski-40864a215/" target="_blank">LinkedIn</a>
             </div>
             <div class="contact-item">
               <i class="fab fa-instagram"></i>
@@ -26,7 +26,7 @@ import { FormsModule } from '@angular/forms';
             </div>
             <div class="contact-item">
               <i class="fab fa-github"></i>
-              <a href="https://github.com/gabrielvdleski" target="_blank">GitHub</a>
+              <a href="https://github.com/voidalzk" target="_blank">GitHub</a>
             </div>
           </div>
         </div>
