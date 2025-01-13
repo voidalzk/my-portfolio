@@ -15,7 +15,7 @@
   --header-bg-scrolled: rgba(44, 62, 80, 0.85);
   --header-text: white;
   --shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-  --scrollbar: #3498db;
+  --scrollbar: #2c3e50;
   --see-button: #2c3e50;
 
 }
@@ -31,7 +31,7 @@
   --header-bg-scrolled: rgba(29, 29, 29, 0.85);
   --header-text: #ffffff;
   --shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-  --scrollbar: #2c3e50;
+  --scrollbar: #313436;
   --see-button: #1a1a1a;
 }
 
@@ -129,7 +129,7 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--primary);
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {
