@@ -28,6 +28,7 @@ import { CommonModule } from '@angular/common';
         background: linear-gradient(
           135deg,
           var(--primary) 0%,
+          var(--primary) 10%,
           var(--secondary) 100%
         );
         color: white;
