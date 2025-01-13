@@ -8,24 +8,21 @@
   --viridian: #5b8266ff;
   --cambridge-blue: #72927fff;
 
-  --night: hsla(120, 11%, 7%, 1);
-  --eerie-black: hsla(120, 9%, 9%, 1);
-  --eerie-black-2: hsla(129, 10%, 13%, 1);
-  --black-olive: hsla(127, 11%, 15%, 1);
-  --dark-green: hsla(141, 21%, 18%, 1);
-  --brunswick-green: hsla(144, 28%, 22%, 1);
-  --viridian: hsla(137, 18%, 43%, 1);
-  --cambridge-blue: hsla(144, 13%, 51%, 1);
-
   --primary: #2c3e50;
   --secondary: #3498db;
-  --accent: #e74c3c;
+  --accent: #e67e22;
   --background: #f5f6fa;
   --text: #2c3e50;
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 
   --scrollbar:#1c5d88;
+
+
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --border-radius: 12px;
+  --card-padding: 2rem;
 }
+
 
 * {
   margin: 0;
@@ -34,14 +31,12 @@
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  color: var(--cambridge-blue);
+  background-color: var(--background);
+  color: var(--text);
   font-family: sans-serif;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  color: var(--text);
-  background-color: var(--background);
+  overflow-x: hidden;
 }
 
 html {
@@ -62,8 +57,9 @@ html {
 }
 
 .section {
-  padding: 4rem 0;
+  padding: 6rem 0;
 }
+
 
 /* Animations */
 /*@keyframes fadeIn {
@@ -82,7 +78,7 @@ html {
 }
 
 */
-/* Estilizando a barra de rolagem */
+
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -96,6 +92,7 @@ html {
   border-radius: 10px;
   border: 3px solid var(--primary);
 }
+
 
 @keyframes fadeIn {
   from {
