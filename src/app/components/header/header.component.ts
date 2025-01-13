@@ -1,12 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-header',
-  standalone: true,
-  imports: [CommonModule],
   template: `
-    <header class="header">
+    <header class="header" [class.scrolled]="isScrolled">
       <div class="container">
         <nav class="nav">
           <div class="logo">GV</div>
@@ -14,7 +13,7 @@ import { CommonModule } from '@angular/common';
             <li><a href="#about">Sobre</a></li>
             <li><a href="#skills">Habilidades</a></li>
             <li><a href="#projects">Projetos</a></li>
-            <li><a href="#curriculum">Currículo</a></li>
+            <li><a (click)="downloadCurriculo()">Currículo</a></li>
             <li><a href="#contact">Contato</a></li>
           </ul>
         </nav>
@@ -24,38 +23,47 @@ import { CommonModule } from '@angular/common';
   styles: [`
     .header {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: var(--shadow);
+      width: 110%;
       z-index: 1000;
+      padding: 1rem 0;
+      transition: var(--transition);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      height: 60px;
+    }
+
+    .header.scrolled {
+      box-shadow: var(--shadow);
     }
 
     .nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 0;
+      height: 100%;
     }
 
     .logo {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: bold;
       color: var(--primary);
     }
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
       list-style: none;
+      margin: 0;
+      padding: 0;
     }
 
     .nav-links a {
       text-decoration: none;
       color: var(--text);
       font-weight: 500;
+      font-size: 0.9rem;
       transition: color 0.3s ease;
+      cursor: pointer;
     }
 
     .nav-links a:hover {
@@ -69,4 +77,18 @@ import { CommonModule } from '@angular/common';
     }
   `]
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  isScrolled = false;
+
+  @HostListener('window:scroll')
+  onScroll() {
+    this.isScrolled = window.scrollY > 50;
+  }
+
+  downloadCurriculo() {
+    const link = document.createElement('a');
+    link.href = 'assets/curriculo.pdf';
+    link.download = 'Gabriel_Voidaleski_Curriculo.pdf';
+    link.click();
+  }
+}
