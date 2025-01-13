@@ -7,6 +7,7 @@ import { AboutComponent } from './components/about/about.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { FadeInDirective } from './directives/fade-in.directive';
 
 @Component({
   selector: 'app-root',
@@ -19,16 +20,17 @@ import { ContactComponent } from './components/contact/contact.component';
     AboutComponent,
     SkillsComponent,
     ProjectsComponent,
-    ContactComponent
+    ContactComponent,
+    FadeInDirective
   ],
   template: `
     <app-header></app-header>
     <main>
-      <app-hero></app-hero>
-      <app-about></app-about>
-      <app-skills></app-skills>
-      <app-projects></app-projects>
-      <app-contact></app-contact>
+      <app-hero appFadeIn></app-hero>
+      <app-about appFadeIn></app-about>
+      <app-skills appFadeIn></app-skills>
+      <app-projects appFadeIn></app-projects>
+      <app-contact appFadeIn></app-contact>
     </main>
   `,
   styles: [`
