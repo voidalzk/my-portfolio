@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Tomorrow
+- Font Author: undefined
+- Font Source: https://fonts.gstatic.com/s/tomorrow/v17/WBLmrETNbFtZCeGqgSXVcWHALdio.ttf
+- Font License: undefined)
