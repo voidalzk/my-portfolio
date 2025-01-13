@@ -42,15 +42,15 @@ import { FormsModule } from '@angular/forms';
     .section-title {
       text-align: center;
       font-size: 2.5rem;
-      color: var(--primary);
+      color: var(--text);
       margin-bottom: 3rem;
     }
 
     .contact-content {
+      background: var(--section-bg);
       max-width: 800px;
       margin: 0 auto;
       padding: 2rem;
-      background: white;
       border-radius: 8px;
       box-shadow: var(--shadow);
     }
@@ -70,20 +70,20 @@ import { FormsModule } from '@angular/forms';
     }
 
     .contact-item i {
-      color: var(--secondary);
+      color: var(--text);
       font-size: 1.5rem;
       width: 1.5rem;
       text-align: center;
     }
 
     .contact-item a {
-      color: var(--text);
+      color: var(--section-text);
       text-decoration: none;
       transition: color 0.3s ease;
     }
 
     .contact-item a:hover {
-      color: var(--secondary);
+      color: var(--text);
     }
 
     @media (max-width: 768px) {

@@ -112,14 +112,14 @@ import { CommonModule } from '@angular/common';
   styles: [
     `
       .projects {
-        background-color: white;
+        background-color: var(--section-bg);
         padding: 6rem 0;
       }
 
       .section-title {
         text-align: center;
         font-size: 2.5rem;
-        color: var(--primary);
+        color: var(--text);
         margin-bottom: 3rem;
       }
 
@@ -148,13 +148,13 @@ import { CommonModule } from '@angular/common';
       }
 
       .project-content h3 {
-        color: var(--primary);
+        color: var(--text);
         margin-bottom: 1rem;
         font-size: 1.3rem;
       }
 
       .project-content p {
-        color: var(--text);
+        color: var(--section-text);
         margin-bottom: 1.5rem;
         line-height: 1.6;
       }
@@ -167,8 +167,8 @@ import { CommonModule } from '@angular/common';
       }
 
       .project-tech span {
-        background: var(--secondary);
-        color: white;
+        background: var(--text);
+        color: var(--background);
         padding: 0.3rem 0.8rem;
         border-radius: 20px;
         font-size: 0.9rem;
@@ -183,13 +183,13 @@ import { CommonModule } from '@angular/common';
       .project-features li {
         position: relative;
         margin-bottom: 0.5rem;
-        color: var(--text);
+        color: var(--section-text);
         font-size: 0.95rem;
       }
 
       .project-features li::before {
         content: '•';
-        color: var(--secondary);
+        color: var(--text);
         position: absolute;
         left: -1rem;
       }

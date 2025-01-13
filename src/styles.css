@@ -1,25 +1,38 @@
 :root {
-  --night: #111511ff;
-  --eerie-black: #151915ff;
-  --eerie-black-2: #1e251fff;
-  --black-olive: #212922ff;
-  --dark-green: #25392cff;
-  --brunswick-green: #294936ff;
-  --viridian: #5b8266ff;
-  --cambridge-blue: #72927fff;
-
   --primary: #2c3e50;
   --secondary: #3498db;
   --accent: #e67e22;
   --background: #f5f6fa;
   --text: #2c3e50;
+  --section-text: hsl(210, 29%, 24%);
+
+
+  --background-secondary: #2c3e50;
+  --background-secondary-text: #ffffff;
+  --card-bg: white;
+  --section-bg: white;
+  --header-bg: rgba(44, 62, 80, 0.7);
+  --header-bg-scrolled: rgba(44, 62, 80, 0.85);
+  --header-text: white;
   --shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  --scrollbar: #3498db;
+  --see-button: #2c3e50;
 
-  --scrollbar: #1c5d88;
+}
 
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --border-radius: 12px;
-  --card-padding: 2rem;
+.dark-theme {
+  --text: #ffffff;
+  --section-text: #ffffff;
+  --background: #1a1a1a;
+  --background-secondary: #313436;
+  --card-bg: #2d2d2d;
+  --section-bg: #2d2d2d;
+  --header-bg: rgba(29, 29, 29, 0.7);
+  --header-bg-scrolled: rgba(29, 29, 29, 0.85);
+  --header-text: #ffffff;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  --scrollbar: #2c3e50;
+  --see-button: #1a1a1a;
 }
 
 * {
@@ -35,6 +48,7 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 html {
@@ -168,4 +182,14 @@ main {
   will-change: transform, opacity;
 }
 
+.header {
+  background: var(--header-bg);
+}
 
+.header.scrolled {
+  background: var(--header-bg-scrolled);
+}
+
+.card {
+  background: var(--card-bg);
+}

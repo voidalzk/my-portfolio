@@ -29,14 +29,14 @@ import { CommonModule } from '@angular/common';
   `,
   styles: [`
     .about {
-      background-color: white;
+      background-color: var(--background);
       padding: 6rem 0;
     }
 
     .section-title {
       text-align: center;
       font-size: 2.5rem;
-      color: var(--primary);
+      color: var(--text);
       margin-bottom: 3rem;
     }
 
@@ -60,7 +60,7 @@ import { CommonModule } from '@angular/common';
       margin-bottom: 1.5rem;
       font-size: 1.1rem;
       line-height: 1.8;
-      color: var(--text);
+      color: var(--section-text);
       text-indent: 20px;
     }
 

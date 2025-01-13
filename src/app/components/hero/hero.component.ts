@@ -27,9 +27,9 @@ import { CommonModule } from '@angular/common';
         align-items: center;
         background: linear-gradient(
           135deg,
-          var(--primary) 0%,
-          var(--primary) 10%,
-          var(--secondary) 100%
+          var(--background) 0%,
+          var(--background-secondary) 30%,
+          var(--background) 100%
         );
         color: white;
       }
@@ -69,7 +69,7 @@ import { CommonModule } from '@angular/common';
 
       .btn.primary {
         background: white;
-        color: var(--primary);
+        color: var(--see-button);
       }
 
       .btn.secondary {

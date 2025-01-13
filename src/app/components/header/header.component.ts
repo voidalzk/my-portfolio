@@ -1,19 +1,27 @@
-import { Component, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, HostListener, PLATFORM_ID, Inject } from '@angular/core';
+import { CommonModule, AsyncPipe, isPlatformBrowser } from '@angular/common';
 import { gsap } from 'gsap';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-header',
+  standalone: true,
+  imports: [CommonModule, AsyncPipe],
   template: `
     <header class="header" [class.scrolled]="isScrolled">
       <div class="container">
         <nav class="nav">
           <div class="logo">GV</div>
-          <button class="menu-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+          <div class="nav-controls">
+            <button class="theme-toggle" (click)="toggleTheme()" [attr.aria-label]="(isDark$ | async) ? 'Switch to light mode' : 'Switch to dark mode'">
+              <i class="theme-icon" [class.dark]="isDark$ | async"></i>
+            </button>
+            <button class="menu-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
           <ul class="nav-links" [class.active]="isMenuOpen">
             <li><a href="#about" (click)="closeMenu()">Sobre</a></li>
             <li><a href="#skills" (click)="closeMenu()">Habilidades</a></li>
@@ -32,7 +40,7 @@ import { gsap } from 'gsap';
       z-index: 1000;
       padding: 0.8rem;
       transition: var(--transition);
-      background: rgba(44, 62, 80, 0.7);
+      background: var(--header-bg);
       backdrop-filter: blur(12px);
       height: 60px;
       margin: 0.5rem auto;
@@ -43,8 +51,8 @@ import { gsap } from 'gsap';
     }
 
     .header.scrolled {
-      background: rgba(44, 62, 80, 0.85);
-      box-shadow: 0 8px 32px 0 rgba(44, 62, 80, 0.2);
+      background: var(--header-bg-scrolled);
+      box-shadow: var(--shadow);
     }
 
     .nav {
@@ -82,6 +90,40 @@ import { gsap } from 'gsap';
     .nav-links a:hover {
       color: #fff;
       text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .theme-toggle {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .theme-icon {
+      width: 20px;
+      height: 20px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>') no-repeat center;
+      transition: transform 0.3s ease;
+    }
+
+    .theme-icon.dark {
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>') no-repeat center;
+      transform: rotate(360deg);
     }
 
     .menu-toggle {
@@ -149,10 +191,24 @@ import { gsap } from 'gsap';
 export class HeaderComponent {
   isScrolled = false;
   isMenuOpen = false;
+  isDark$;
+
+  constructor(
+    private themeService: ThemeService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isDark$ = this.themeService.isDark();
+    }
+  }
 
   @HostListener('window:scroll')
   onScroll() {
     this.isScrolled = window.scrollY > 50;
+  }
+
+  toggleTheme() {
+    this.themeService.toggleTheme();
   }
 
   toggleMenu() {

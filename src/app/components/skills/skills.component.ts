@@ -49,7 +49,7 @@ import { CommonModule } from '@angular/common';
     .section-title {
       text-align: center;
       font-size: 2.5rem;
-      color: var(--primary);
+      color: var(--text);
       margin-bottom: 3rem;
     }
 
@@ -62,14 +62,14 @@ import { CommonModule } from '@angular/common';
     }
 
     .skill-category {
-      background: white;
+      background: var(--section-bg);
       padding: 2rem;
       border-radius: 8px;
       box-shadow: var(--shadow);
     }
 
     .skill-category h3 {
-      color: var(--primary);
+      color: var(--text);
       margin-bottom: 1.5rem;
       font-size: 1.5rem;
       text-align: center;
@@ -85,10 +85,11 @@ import { CommonModule } from '@angular/common';
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      color: var(--section-text);
     }
 
     .skill-list i {
-      color: var(--secondary);
+      color: var(--text);
       font-size: 1.2rem;
     }
 
