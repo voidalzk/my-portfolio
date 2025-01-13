@@ -1,12 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { gsap } from 'gsap';
 
 @Component({
   selector: 'app-header',
-  standalone: true,
-  imports: [CommonModule],
   template: `
-    <header class="header">
+    <header class="header" [class.scrolled]="isScrolled">
       <div class="container">
         <nav class="nav">
           <div class="logo">GV</div>
@@ -21,71 +20,71 @@ import { CommonModule } from '@angular/common';
       </div>
     </header>
   `,
-  styles: [
-    `
-      .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: var(--shadow);
-        z-index: 1000;
-      }
+  styles: [`
+    .header {
+      position: fixed;
+      width: 110%;
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: var(--transition);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      height: 60px;
+    }
 
-      .nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 0;
-      }
+    .header.scrolled {
+      box-shadow: var(--shadow);
+    }
 
-      .logo {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: var(--primary);
-      }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+    }
 
+    .logo {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+
+    @media (max-width: 768px) {
       .nav-links {
-        display: flex;
-        gap: 2rem;
-        list-style: none;
+        display: none;
       }
-
-      .nav-links a {
-        text-decoration: none;
-        color: var(--text);
-        font-weight: 500;
-        transition: color 0.3s ease;
-      }
-
-      .nav-links a:hover {
-        color: var(--secondary);
-      }
-
-      .btn-download {
-        background: var(--secondary);
-        color: white;
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background 0.3s ease;
-      }
-
-      .btn-download:hover {
-        background: #2a6ebb; /* Ajuste conforme a cor desejada */
-      }
-
-      @media (max-width: 768px) {
-        .nav-links {
-          display: none;
-        }
-      }
-    `,
-  ],
+    }
+  `]
 })
 export class HeaderComponent {
+  isScrolled = false;
+
+  @HostListener('window:scroll')
+  onScroll() {
+    this.isScrolled = window.scrollY > 50;
+  }
+
   downloadCurriculo() {
     const link = document.createElement('a');
     link.href = 'assets/curriculo.pdf';

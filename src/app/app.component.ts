@@ -24,7 +24,7 @@ import { AnimationService } from './services/animation.service';
   ],
   template: `
     <app-header></app-header>
-    <main class="smooth-scroll">
+    <main>
       <app-hero></app-hero>
       <app-about class="section"></app-about>
       <app-skills class="section"></app-skills>
@@ -48,7 +48,7 @@ export class AppComponent {
 
   constructor(private animationService: AnimationService) {}
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.animationService.initializeAnimations();
   }
 }

@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -6,44 +7,48 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
   providedIn: 'root'
 })
 export class AnimationService {
-  constructor() {
-    gsap.registerPlugin(ScrollTrigger);
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      gsap.registerPlugin(ScrollTrigger);
+    }
   }
 
   initializeAnimations() {
-    // Animação de entrada suave para seções
-    gsap.utils.toArray('.section').forEach((section: any) => {
-      gsap.from(section, {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse'
-        }
-      });
-    });
+    if (!isPlatformBrowser(this.platformId)) return;
 
-    // Animação do hero
-    gsap.from('.hero-content', {
-      duration: 1.5,
-      opacity: 0,
-      y: -50,
-      stagger: 0.3,
-      ease: 'power3.out'
-    });
+    setTimeout(() => {
+      const sections = document.querySelectorAll('.section');
+      const heroContent = document.querySelector('.hero-content');
 
-    // Animação das skills
-    gsap.from('.skill-category', {
-      duration: 0.8,
-      opacity: 0,
-      y: 30,
-      stagger: 0.2,
-      scrollTrigger: {
-        trigger: '.skills-grid',
-        start: 'top 70%'
+      if (sections.length > 0) {
+        gsap.set(sections, { opacity: 0, y: 50 });
+
+        sections.forEach(section => {
+          gsap.to(section, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse'
+            }
+          });
+        });
       }
-    });
+
+      if (heroContent) {
+        gsap.set(heroContent, { willChange: 'transform, opacity' });
+        gsap.from(heroContent, {
+          duration: 1,
+          opacity: 0,
+          y: -30,
+          clearProps: 'willChange',
+          onComplete: function() {
+            gsap.set(heroContent, { clearProps: 'all' });
+          }
+        });
+      }
+    }, 0);
   }
-} 
+}

@@ -15,14 +15,12 @@
   --text: #2c3e50;
   --shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 
-  --scrollbar:#1c5d88;
-
+  --scrollbar: #1c5d88;
 
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --border-radius: 12px;
   --card-padding: 2rem;
 }
-
 
 * {
   margin: 0;
@@ -34,13 +32,15 @@ body {
   background-color: var(--background);
   color: var(--text);
   font-family: sans-serif;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
 }
 
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
+  scroll-padding-top: 60px;
 }
 
 @media (max-width: 768px) {
@@ -59,7 +59,38 @@ html {
 .section {
   padding: 6rem 0;
 }
+.card {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
 
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Botões estilizados */
+.btn {
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  border: none;
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
+}
 
 /* Animations */
 /*@keyframes fadeIn {
@@ -80,7 +111,7 @@ html {
 */
 
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -90,9 +121,16 @@ html {
 ::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar);
   border-radius: 10px;
-  border: 3px solid var(--primary);
 }
 
+[appFadeIn] {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
 
 @keyframes fadeIn {
   from {
@@ -103,15 +141,6 @@ html {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-[appFadeIn] {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.fade-in {
-  animation: fadeIn 1s ease-out forwards;
 }
 
 /* Hover animation for interactive elements */
@@ -130,5 +159,13 @@ html {
 }
 
 main {
-  animation: fadeIn 0.6s ease-out forwards;
+  padding-top: 60px;
 }
+
+/* Otimizações de performance */
+.hero-content,
+.section {
+  will-change: transform, opacity;
+}
+
+
