@@ -111,7 +111,7 @@ import { ThemeService } from '../../services/theme.service';
     }
 
     .theme-toggle:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: var(--background-rgb);
     }
 
     .theme-icon {
@@ -165,7 +165,7 @@ import { ThemeService } from '../../services/theme.service';
         right: -100%;
         width: 70%;
         height: 100vh;
-        background: rgba(44, 62, 80, 0.98);
+        background: var(--background-rgb);
         padding: 80px 40px;
         transition: var(--transition);
         align-items: center;
@@ -174,7 +174,7 @@ import { ThemeService } from '../../services/theme.service';
 
       .nav-links.active {
         right: 0;
-        box-shadow: -5px 0 15px rgba(44, 62, 80, 0.3);
+        box-shadow: var(--box-shadow);
       }
 
       .nav-links a {
