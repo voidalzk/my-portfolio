@@ -33,7 +33,8 @@ import { CommonModule } from '@angular/common';
               <li><i class="fab fa-git-alt"></i> Git</li>
               <li><i class="fas fa-database"></i> SQL</li>
               <li><i class="fab fa-docker"></i> Docker</li>
-              <li><i class="fab fa-postgres"></i> PostgreSQL</li>
+              <li><i class="devicon-postgresql-plain"></i> PostgreSQL</li>
+              <li><i class="devicon-mysql-plain"></i> MySQL</li>
             </ul>
           </div>
         </div>

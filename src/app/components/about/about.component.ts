@@ -49,6 +49,7 @@ import { CommonModule } from '@angular/common';
       align-items: center;
     }
 
+
     .profile-image {
       width: 200px;
       height: 200px;
