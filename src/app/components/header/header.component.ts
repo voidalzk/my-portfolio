@@ -11,7 +11,7 @@ import { ThemeService } from '../../services/theme.service';
     <header class="header" [class.scrolled]="isScrolled">
       <div class="container">
         <nav class="nav">
-          <div class="logo">GV</div>
+          <div class="logo">Gv</div>
           <div class="nav-controls">
             <button class="theme-toggle" (click)="toggleTheme()" [attr.aria-label]="(isDark$ | async) ? 'Switch to light mode' : 'Switch to dark mode'">
               <i class="theme-icon" [class.dark]="isDark$ | async"></i>
@@ -66,8 +66,9 @@ import { ThemeService } from '../../services/theme.service';
 
     .logo {
       font-size: 1.3rem;
-      font-weight: bold;
+      font-weight: 700;
       color: #fff;
+      font-family: 'MuseoModerno', sans-serif;
     }
 
     .nav-links {
