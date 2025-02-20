@@ -112,9 +112,19 @@
   animation: pulse 0.6s ease-in-out;
 }
 
+/* Remove or comment out the existing hover effect */
 .more-about-button:hover {
-  transform: translateY(-2px);
-  background: #f0f0f0; /* Ajuste se necessário */
+  background: #f0f0f0;
+}
+
+/* Add the rotation animation when the button is in its "open" state */
+.more-about-button i {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.more-about-button i.fa-minus {
+  transform: rotate(360deg);
 }
 
 @media (max-width: 768px) {
@@ -128,7 +138,7 @@
   }
 
   .profile-image {
-    width: 100px;
     height: 100px;
+    width: 100px;
   }
 }
