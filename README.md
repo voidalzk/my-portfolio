@@ -23,6 +23,3 @@ MyPortfolio é um aplicativo web de portfólio pessoal desenvolvido com Angular.
 
 Acesse a versão em produção do aplicativo [aqui](https://gvoida.vercel.app/).
 
-
-License
-Este projeto está licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
