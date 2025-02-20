@@ -1,0 +1,134 @@
+/* Efeito de pulse para o botão ao ser clicado */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Animação de fade-in para a div "more-about" */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
+.about {
+  background-color: var(--background);
+  padding: 6rem 0;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--text);
+  margin-bottom: 3rem;
+}
+
+.about-content {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.more-about {
+  margin-top: 2rem;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.more-about.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.more-about.fade-out {
+  animation: fadeOut 0.5s ease-out forwards;
+}
+
+.more-about-content {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.more-about-text p {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--section-text);
+  text-indent: 20px;
+}
+
+.more-about-text h3 {
+  font-size: 1.5rem;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.profile-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.about-text p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--section-text);
+  text-indent: 20px;
+}
+
+.button-wrapper {
+  text-align: center;
+}
+
+.more-about-button {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: white;
+  color: var(--see-button);
+  border-radius: 50px;
+  font-weight: bold;
+  margin-top: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s;
+  text-decoration: none;
+}
+
+/* Aplica a animação quando o botão é clicado */
+.more-about-button:active {
+  animation: pulse 0.6s ease-in-out;
+}
+
+.more-about-button:hover {
+  transform: translateY(-2px);
+  background: #f0f0f0; /* Ajuste se necessário */
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 4rem 0;
+  }
+
+  .about-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-image {
+    width: 100px;
+    height: 100px;
+  }
+}

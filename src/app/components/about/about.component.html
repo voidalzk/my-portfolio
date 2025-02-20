@@ -1,0 +1,42 @@
+<section id="about" class="about section">
+  <div class="container">
+    <h2 class="section-title">Sobre Mim</h2>
+    <div class="about-content">
+      <img
+        src="assets/profile2.jpeg"
+        alt="Foto de Gabriel Francelino Voidaleski"
+        class="profile-image"
+        loading="lazy"
+        width="150"
+        height="150"
+      >
+      <div class="about-text">
+        <p>Olá! Sou Gabriel Francelino Voidaleski, um desenvolvedor Full Stack de 20 anos apaixonado por criar soluções web inovadoras e eficientes.</p>
+        <p>Tenho experiência como estagiário no Ministério Público do Estado do Paraná, onde desenvolvi aplicações de suporte administrativo e implementei automatizações para otimizar processos.</p>
+        <p>Estou cursando Tecnologia em Análise e Desenvolvimento de Sistemas na Universidade Federal do Estado do Paraná, sempre buscando aprender novas tecnologias e aprimorar minhas habilidades.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="more-info">
+    <div class="button-wrapper">
+      <button
+        (click)="toggleVisibility()"
+        class="more-about-button"
+        [attr.aria-expanded]="isVisible">
+        <i class="fas" [ngClass]="isVisible ? 'fa-minus' : 'fa-plus'"></i>
+      </button>
+    </div>
+    <div class="more-about" *ngIf="isVisible" [@fadeInOut]>
+      <div class="more-about-content">
+        <div class="more-about-text">
+          <h3 class="more-title">Mais sobre mim:</h3>
+          <p>Sou apaixonado por jogos, música, esportes como o MMA, Futebol e Basquete, Corinthiano e torcedor do Brooklyn Nets (duas vezes sofredor).</p>
+          <p>Adoro aprender coisas novas, e estou sempre em busca de novos desafios e oportunidades para crescer profissionalmente.</p>
+          <p>Músicas que escuto:</p>
+          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/41rkdmrJhBA4tWKsgyo42B?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="eager"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
