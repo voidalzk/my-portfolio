@@ -9,32 +9,126 @@
         loading="lazy"
         width="150"
         height="150"
-      >
+      />
       <div class="about-text">
-        <p>Olá! Sou Gabriel Francelino Voidaleski, um desenvolvedor Full Stack de 20 anos apaixonado por criar soluções web inovadoras e eficientes.</p>
-        <p>Tenho experiência como estagiário no Ministério Público do Estado do Paraná, onde desenvolvi aplicações de suporte administrativo e implementei automatizações para otimizar processos.</p>
-        <p>Estou cursando Tecnologia em Análise e Desenvolvimento de Sistemas na Universidade Federal do Estado do Paraná, sempre buscando aprender novas tecnologias e aprimorar minhas habilidades.</p>
+        <p>
+          Olá! Sou Gabriel Francelino Voidaleski, um desenvolvedor Full Stack de
+          20 anos apaixonado por criar soluções web inovadoras e eficientes.
+        </p>
+        <p>
+          Tenho experiência como estagiário no Ministério Público do Estado do
+          Paraná, onde desenvolvi aplicações de suporte administrativo e
+          implementei automatizações para otimizar processos.
+        </p>
+        <p>
+          Estou cursando Tecnologia em Análise e Desenvolvimento de Sistemas na
+          Universidade Federal do Estado do Paraná, sempre buscando aprender
+          novas tecnologias e aprimorar minhas habilidades.
+        </p>
       </div>
     </div>
   </div>
 
-  <div class="more-info">
+  <div class="buttons-container">
     <div class="button-wrapper">
       <button
         (click)="toggleVisibility()"
         class="more-about-button"
-        [attr.aria-expanded]="isVisible">
+        [attr.aria-expanded]="isVisible"
+        [class.active]="isVisible"
+      >
         <i class="fas" [ngClass]="isVisible ? 'fa-minus' : 'fa-plus'"></i>
+        Sobre mim
       </button>
     </div>
+
+    <div class="button-wrapper">
+      <button
+        (click)="toggleEducationVisibility()"
+        class="education-button"
+        [attr.aria-expanded]="isEducationVisible"
+        [class.active]="isEducationVisible"
+      >
+        <i class="fas" [ngClass]="isEducationVisible ? 'fa-minus' : 'fa-plus'"></i>
+        Educação
+      </button>
+    </div>
+  </div>
+
+  <div class="content-container">
     <div class="more-about" *ngIf="isVisible" [@fadeInOut]>
       <div class="more-about-content">
         <div class="more-about-text">
           <h3 class="more-title">Mais sobre mim:</h3>
-          <p>Sou apaixonado por jogos, música, esportes como o MMA, Futebol e Basquete, Corinthiano e torcedor do Brooklyn Nets (duas vezes sofredor).</p>
-          <p>Adoro aprender coisas novas, e estou sempre em busca de novos desafios e oportunidades para crescer profissionalmente.</p>
+          <p>
+            Sou apaixonado por jogos, música, esportes como o MMA, Futebol e
+            Basquete, Corinthiano e torcedor do Brooklyn Nets (duas vezes
+            sofredor).
+          </p>
+          <p>
+            Adoro aprender coisas novas, e estou sempre em busca de novos
+            desafios e oportunidades para crescer profissionalmente.
+          </p>
           <p>Músicas que escuto:</p>
-          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/41rkdmrJhBA4tWKsgyo42B?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="eager"></iframe>
+          <iframe
+            style="border-radius: 12px"
+            src="https://open.spotify.com/embed/album/41rkdmrJhBA4tWKsgyo42B?utm_source=generator"
+            width="100%"
+            height="352"
+            frameBorder="0"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="eager"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="education-content" *ngIf="isEducationVisible" [@fadeInOut]>
+      <h3 class="section-subtitle">Educação</h3>
+      <div class="education-cards">
+        <h3>Formação</h3>
+        <div class="education-card">
+          <h4 class="education-title">
+            Tecnologia em Análise e Desenvolvimento de Sistemas
+          </h4>
+          <p class="education-institution">
+            Universidade Federal do Estado do Paraná
+          </p>
+          <p class="education-timespan">2023 - Atualmente</p>
+          <p class="education-period">5º Período</p>
+        </div>
+        <div class="education-card">
+          <h4 class="education-title">Ensino Médio</h4>
+          <p class="education-institution">
+            Colégio Estadual Pinheiro do Paraná
+          </p>
+          <p class="education-timespan">2020-2022</p>
+        </div>
+      </div>
+      <div class="certificates">
+        <h3>Certificações</h3>
+        <div class="certificate-card">
+          <h4 class="certificate-title">
+            Desenvolvimento Web Completo - Javascript, Typescript, Node, React, HTML, CSS,
+            MySQL, MongoDB
+          </h4>
+          <p class="certificate-institution">Udemy</p>
+          <p class="certificate-timespan">2021</p>
+        </div>
+        <div class="certificate-card">
+          <h4 class="certificate-title">
+            Java Completo - Programação Orientada a Objetos + Projetos
+          </h4>
+          <p class="certificate-institution">Udemy</p>
+          <p class="certificate-timespan">2024</p>
+        </div>
+        <div class="certificate-card">
+          <h4 class="certificate-title">
+            Career Essentials in Generative AI by Microsoft and LinkedIn
+          </h4>
+          <p class="certificate-institution">Linkedin Education</p>
+          <p class="certificate-timespan">2025</p>
         </div>
       </div>
     </div>
