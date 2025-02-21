@@ -17,7 +17,7 @@ export class AnimationService {
     if (!isPlatformBrowser(this.platformId)) return;
 
     setTimeout(() => {
-      const sections = document.querySelectorAll('.section');
+      const sections = document.querySelectorAll('.section:not(.animated)');
       const heroContent = document.querySelector('.hero-content');
 
       if (sections.length > 0) {
@@ -28,16 +28,20 @@ export class AnimationService {
             opacity: 1,
             y: 0,
             duration: 0.8,
+            onComplete: () => {
+              section.classList.add('animated');
+            },
             scrollTrigger: {
               trigger: section,
               start: 'top 80%',
-              toggleActions: 'play none none reverse'
+              toggleActions: 'play none none none',
+              once: true
             }
           });
         });
       }
 
-      if (heroContent) {
+      if (heroContent && !heroContent.classList.contains('animated')) {
         gsap.set(heroContent, { willChange: 'transform, opacity' });
         gsap.from(heroContent, {
           duration: 1,
@@ -46,6 +50,7 @@ export class AnimationService {
           clearProps: 'willChange',
           onComplete: function() {
             gsap.set(heroContent, { clearProps: 'all' });
+            heroContent.classList.add('animated');
           }
         });
       }
