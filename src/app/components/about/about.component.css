@@ -1,11 +1,9 @@
-/* Efeito de pulse para o botão ao ser clicado */
 @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
 }
 
-/* Animação de fade-in para a div "more-about" */
 @keyframes fadeIn {
   0% { opacity: 0; transform: translateY(-10px); }
   100% { opacity: 1; transform: translateY(0); }
@@ -90,7 +88,7 @@
 }
 
 .button-wrapper {
-  text-align: center;
+  display: inline-block;
 }
 
 .more-about-button {
@@ -105,19 +103,25 @@
   cursor: pointer;
   transition: transform 0.3s ease, background 0.3s;
   text-decoration: none;
+  min-width: 150px;
 }
 
-/* Aplica a animação quando o botão é clicado */
+.more-about-button.active {
+  background: var(--section-text);
+  color: var(--background);
+}
+
 .more-about-button:active {
   animation: pulse 0.6s ease-in-out;
 }
 
-/* Remove or comment out the existing hover effect */
+
+
 .more-about-button:hover {
   background: #f0f0f0;
+  color: var(--btn-hover);
 }
 
-/* Add the rotation animation when the button is in its "open" state */
 .more-about-button i {
   display: inline-block;
   transition: transform 0.3s ease;
@@ -127,6 +131,198 @@
   transform: rotate(360deg);
 }
 
+.education-button {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: white;
+  color: var(--see-button);
+  border-radius: 50px;
+  font-weight: bold;
+  margin-top: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s;
+  text-decoration: none;
+  min-width: 150px;
+}
+
+.education-button.active {
+  background: var(--section-text);
+  color: var(--background);
+}
+
+.education-button:active {
+  animation: pulse 0.6s ease-in-out;
+}
+
+.education-button:hover {
+  background: #f0f0f0;
+  color: var(--btn-hover);
+}
+
+.education-button i {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.education-button i.fa-minus {
+  transform: rotate(360deg);
+}
+
+.education-content {
+  margin-top: 2rem;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.education-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.education-card {
+  background: var(--background);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.education-card:hover {
+  transform: translateY(-5px);
+}
+
+.education-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.education-title h3 {
+  color: var(--text);
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.education-cards p {
+  color: var(--section-text);
+  margin-bottom: 1rem;
+}
+
+.education {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.education-content {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.section-subtitle {
+  color: var(--text);
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.education-cards {
+  margin-bottom: 3rem;
+}
+
+.education-cards h3 {
+  color: var(--text);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--section-text);
+}
+
+.education-card {
+  background: var(--background);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.education-card:hover {
+  transform: translateY(-5px);
+}
+
+.education-title {
+  color: var(--text);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.education-institution {
+  color: var(--primary);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.education-timespan,
+.education-period {
+  color: var(--section-text);
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.certificates {
+  margin-top: 3rem;
+}
+
+.certificates h3 {
+  color: var(--text);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--section-text);
+}
+
+.certificate-card {
+  background: var(--background);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.certificate-card:hover {
+  transform: translateY(-5px);
+}
+
+.certificate-title {
+  color: var(--text);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.certificate-institution {
+  color: var(--section-text);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.certificate-timespan {
+  color: var(--section-text);
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .about {
     padding: 4rem 0;
@@ -141,4 +337,39 @@
     height: 100px;
     width: 100px;
   }
+
+  .education-cards,
+  .certificates {
+    grid-template-columns: 1fr;
+  }
+
+  .education-content {
+    padding: 1.5rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.75rem;
+  }
+
+  .education-card,
+  .certificate-card {
+    padding: 1.25rem;
+  }
+
+  .buttons-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
