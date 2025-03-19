@@ -1,0 +1,217 @@
+.hero {
+  position: relative; /* Garante que os elementos absolute fiquem posicionados relativos ao hero */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(
+    135deg,
+    var(--background) 0%,
+    var(--background-secondary) 30%,
+    var(--background) 100%
+  );
+  color: white;
+  overflow: hidden; /* Evita que os ícones saiam da seção */
+}
+
+.hero-content {
+  text-align: center;
+}
+
+h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn {
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn.primary {
+  background: white;
+  color: var(--see-button);
+}
+
+.btn.secondary {
+  border: 2px solid white;
+  color: white;
+}
+
+.tracking-in-expand {
+  -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.61, 0.355, 1)
+    both;
+  animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+}
+
+.floating-icons {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none; /* para que não interfira com cliques */
+  z-index: 1;
+}
+
+.floating-icon {
+  position: absolute;
+  opacity: 0.7;
+  filter: blur(0.1px);
+  animation: float ease-in-out infinite;
+}
+
+.floating-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--text);
+  transition: opacity 0.5s ease;
+}
+
+.sun-icon {
+  animation: rotate 30s linear infinite;
+}
+
+.floating-icon.sun svg {
+  animation: rotate 30s linear infinite;
+}
+
+.floating-icon.sun {
+  width: 150px;
+  height: 150px;
+  top: 15%;
+  right: 10%;
+  animation: float 8s ease-in-out infinite, rotate 30s linear infinite;
+}
+
+.floating-icon.moon {
+  width: 120px;
+  height: 120px;
+  bottom: 20%;
+  left: 5%;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .floating-icon.sun {
+    width: 100px;
+    height: 100px;
+    top: 10%;
+    right: 5%;
+  }
+
+  .floating-icon.moon {
+    width: 80px;
+    height: 80px;
+    bottom: 15%;
+    left: 3%;
+  }
+}
+
+@-webkit-keyframes text-pop-up-top {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    text-shadow: none;
+  }
+  100% {
+    -webkit-transform: translateY(-50px);
+    transform: translateY(-50px);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    text-shadow: 0 1px 0 #cccccc, 0 2px 0 #cccccc, 0 3px 0 #cccccc,
+      0 4px 0 #cccccc, 0 5px 0 #cccccc, 0 6px 0 #cccccc, 0 7px 0 #cccccc,
+      0 8px 0 #cccccc, 0 9px 0 #cccccc, 0 50px 30px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@-webkit-keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+.floating-icon.fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.15;
+  }
+}
