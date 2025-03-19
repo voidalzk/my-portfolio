@@ -27,6 +27,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 export class AboutComponent {
   isVisible = false;
   isEducationVisible = false;
+  spotifyLoaded = false;
 
   toggleVisibility(): void {
     this.isVisible = !this.isVisible;
