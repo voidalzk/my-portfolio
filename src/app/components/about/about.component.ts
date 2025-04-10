@@ -28,12 +28,23 @@ export class AboutComponent {
   isVisible = false;
   isEducationVisible = false;
   spotifyLoaded = false;
+  isExperienceVisible = false;
 
   toggleVisibility(): void {
     this.isVisible = !this.isVisible;
+    this.isEducationVisible = false;
+    this.isExperienceVisible = false;
   }
 
   toggleEducationVisibility(): void {
     this.isEducationVisible = !this.isEducationVisible;
+    this.isVisible = false;
+    this.isExperienceVisible = false;
+  }
+
+  toggleExperienceVisibility(): void {
+    this.isExperienceVisible = !this.isExperienceVisible;
+    this.isVisible = false;
+    this.isEducationVisible = false;
   }
 }

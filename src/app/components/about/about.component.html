@@ -56,6 +56,21 @@
         Educação
       </button>
     </div>
+
+    <div class="button-wrapper">
+      <button
+        (click)="toggleExperienceVisibility()"
+        class="experience-button"
+        [attr.aria-expanded]="isExperienceVisible"
+        [class.active]="isExperienceVisible"
+      >
+        <i
+          class="fas"
+          [ngClass]="isExperienceVisible ? 'fa-minus' : 'fa-plus'"
+        ></i>
+        Experiência
+      </button>
+    </div>
   </div>
 
   <div class="content-container">
@@ -141,6 +156,40 @@
           <p class="certificate-institution">Linkedin Education</p>
           <p class="certificate-timespan">2025</p>
         </div>
+      </div>
+    </div>
+
+    <div class="experience-content" *ngIf="isExperienceVisible" [@fadeInOut]>
+      <h3 class="section-subtitle">Experiência</h3>
+      <div class="experience-cards">
+        <div class="experience-card">
+          <h4 class="experience-institution">
+            Banco do Brasil - SA
+          </h4>
+          <p class="experience-role">Estagiário Dev & Analytics</p>
+          <p class="experience-timespan">2025 - Atualmente</p>
+          <p class="experience-description">
+            Desenvolvimento fullstack de aplicações para internas no Infra de Grandes Prédios e
+            automação de processos internos.
+          </p>
+          <p class="experience-tech">
+            Tecnologias: Vue.js, PHP, Laravel, MySQL, MariaDB, Python, PowerBI
+          </p>
+        </div>
+        <div class="experience-card">
+          <h4 class="experience-institution">
+            Ministério Público do Estado do Paraná
+          </h4>
+          <p class="experience-role">Estagiário de Desenvolvimento</p>
+          <p class="experience-timespan">2022 - 2024</p>
+          <p class="experience-description">
+            Desenvolvimento de aplicações de suporte administrativo e
+            automatizações para otimizar processos.
+          </p>
+          <p class="experience-tech">
+            Tecnologias: Javascript, AppScript, Google Apps, Google Cloud, Python
+          </p>
+          </div>
       </div>
     </div>
   </div>
