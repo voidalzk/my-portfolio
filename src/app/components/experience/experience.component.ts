@@ -26,7 +26,7 @@ export class ExperienceComponent {
         'Desenvolvimento full stack e manutenção evolutiva e corretiva de aplicações internas com PHP, Node.js e Vue.js.',
         'Suporte a bancos DB2, MySQL e PostgreSQL, incluindo consultas, tratamento de dados e apoio às aplicações.',
         'Sustentação de servidores SUSE Linux, ambientes de aplicação e serviços internos.',
-        'Rotinas em Python para automação, manipulação de dados e apoio às atividades de analytics.',
+        'Desenvolvimento de rotinas para automação, manipulação de dados e apoio às atividades de analytics.',
         'Participação em integrações com inteligência artificial e arquiteturas RAG.',
       ],
       stack: ['PHP', 'Node.js', 'Vue.js', 'Python', 'DB2', 'MySQL', 'PostgreSQL', 'SUSE Linux', 'IA / RAG'],
