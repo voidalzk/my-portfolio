@@ -1,104 +1,140 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, FormsModule],
   template: `
-    <section id="contact" class="contact section">
-      <div class="container">
-        <h2 class="section-title">Contato</h2>
-        <div class="contact-content">
-          <div class="contact-info">
-            <div class="contact-item">
-              <i class="fas fa-envelope"></i>
-              <a href="mailto:gabriel.voidaleski@gmail.com">voidalzk&#64;gmail.com</a>
-            </div>
-            <div class="contact-item">
-              <i class="fab fa-linkedin"></i>
-              <a href="https://www.linkedin.com/in/gabriel-voidaleski-40864a215/" target="_blank">LinkedIn</a>
-            </div>
-            <div class="contact-item">
-              <i class="fab fa-instagram"></i>
-              <a href="https://www.instagram.com/gabrielvdlzk/" target="_blank">Instagram</a>
-            </div>
-            <div class="contact-item">
-              <i class="fab fa-github"></i>
-              <a href="https://github.com/voidalzk" target="_blank">GitHub</a>
-            </div>
+    <section id="contato" class="contact section" aria-labelledby="contact-title">
+      <div class="contact-orbit" aria-hidden="true"></div>
+      <div class="container contact-content">
+        <h2 id="contact-title" class="section-heading">07 — Contato</h2>
+        <p class="contact-lead">
+          Contato profissional para oportunidades em desenvolvimento de software e projetos.
+        </p>
+
+        <div class="contact-actions">
+          <a class="email" href="mailto:voidalzk@gmail.com">
+            <span>Escreva para</span>
+            voidalzk&#64;gmail.com <strong aria-hidden="true">↗</strong>
+          </a>
+          <div class="social-links" aria-label="Links profissionais">
+            <a href="https://www.linkedin.com/in/gabriel-voidaleski-40864a215/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <a href="https://github.com/voidalzk" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a href="assets/curriculo-gabriel-voidaleski.pdf" download>Currículo ↓</a>
           </div>
         </div>
+
+        <footer>
+          <span>Gabriel Voidaleski · Curitiba, PR</span>
+          <span>Portfólio desenvolvido em Angular · {{ year }}</span>
+        </footer>
       </div>
     </section>
   `,
   styles: [`
     .contact {
-      background-color: var(--background);
-      padding: 6rem 0;
+      position: relative;
+      overflow: hidden;
+      background: var(--ink);
+      color: var(--paper);
     }
 
-    .section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      color: var(--text);
-      margin-bottom: 3rem;
+    .contact-orbit {
+      position: absolute;
+      top: -24rem;
+      right: -17rem;
+      width: 56rem;
+      height: 56rem;
+      border: 1px solid color-mix(in srgb, var(--paper) 14%, transparent);
+      border-radius: 50%;
     }
 
-    .contact-content {
-      background: var(--section-bg);
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: var(--shadow);
+    .contact-orbit::before,
+    .contact-orbit::after {
+      position: absolute;
+      border: inherit;
+      border-radius: inherit;
+      content: '';
     }
 
-    .contact-info {
+    .contact-orbit::before { inset: 7rem; }
+    .contact-orbit::after { inset: 14rem; background: color-mix(in srgb, var(--signal) 18%, transparent); }
+
+    .contact-content { position: relative; z-index: 1; }
+    .section-heading { color: var(--signal); }
+
+    .contact-lead {
+      max-width: 620px;
+      margin: 2rem 0 0;
+      color: color-mix(in srgb, var(--paper) 72%, transparent);
+      font-size: clamp(1rem, 1.8vw, 1.22rem);
+    }
+
+    .contact-actions {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 3rem;
+      margin-top: clamp(3rem, 5vw, 4.5rem);
+      padding-bottom: 3rem;
+      border-bottom: 1px solid color-mix(in srgb, var(--paper) 18%, transparent);
+    }
+
+    .email {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.5rem 1rem;
+      color: var(--paper);
+      font-family: var(--display);
+      font-size: clamp(1.65rem, 4vw, 3.4rem);
+      text-decoration: none;
+    }
+
+    .email span {
+      flex-basis: 100%;
+      color: var(--signal);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+    }
+
+    .email strong { color: var(--signal); }
+
+    .social-links {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      gap: 0.65rem;
+      text-align: right;
     }
 
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-size: 1.1rem;
-    }
-
-    .contact-item i {
-      color: var(--text);
-      font-size: 1.5rem;
-      width: 1.5rem;
-      text-align: center;
-    }
-
-    .contact-item a {
-      color: var(--section-text);
+    .social-links a {
+      color: color-mix(in srgb, var(--paper) 78%, transparent);
+      font-family: var(--mono);
+      font-size: 0.76rem;
       text-decoration: none;
-      transition: color 0.3s ease;
     }
 
-    .contact-item a:hover {
-      color: var(--text);
+    .social-links a:hover { color: var(--signal); }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      padding-top: 1.5rem;
+      color: color-mix(in srgb, var(--paper) 52%, transparent);
+      font-family: var(--mono);
+      font-size: 0.64rem;
+      text-transform: uppercase;
     }
 
-    @media (max-width: 768px) {
-      .contact {
-        padding: 4rem 0;
-      }
-
-      .section-title {
-        font-size: 2rem;
-      }
-
-      .contact-content {
-        padding: 1.5rem;
-      }
+    @media (max-width: 720px) {
+      .contact-actions { grid-template-columns: 1fr; gap: 2rem; }
+      .social-links { align-items: flex-start; text-align: left; }
+      footer { flex-direction: column; gap: 0.4rem; }
     }
-  `]
+  `],
 })
-export class ContactComponent {}
+export class ContactComponent {
+  readonly year = new Date().getFullYear();
+}

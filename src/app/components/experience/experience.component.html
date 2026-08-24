@@ -1,0 +1,37 @@
+<section id="experiencia" class="experience section" aria-labelledby="experience-title">
+  <div class="container">
+    <h2 id="experience-title" class="section-heading">03 — Experiência profissional</h2>
+
+    <div class="timeline">
+      @for (experience of experiences; track experience.company) {
+        <article class="experience-item">
+          <div class="experience-meta">
+            <p class="period">{{ experience.period }}</p>
+            <span class="timeline-dot" aria-hidden="true"></span>
+          </div>
+          <div class="experience-content">
+            <div class="experience-title">
+              <div>
+                <h3>{{ experience.company }}</h3>
+                <p class="role">{{ experience.role }}</p>
+              </div>
+              @if (experience.context) {
+                <p class="context">{{ experience.context }}</p>
+              }
+            </div>
+            <ul>
+              @for (detail of experience.details; track detail) {
+                <li>{{ detail }}</li>
+              }
+            </ul>
+            <div class="tags" aria-label="Tecnologias e áreas relacionadas">
+              @for (technology of experience.stack; track technology) {
+                <span>{{ technology }}</span>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

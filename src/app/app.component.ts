@@ -1,52 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { HeaderComponent } from './components/header/header.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { AboutComponent } from './components/about/about.component';
+import { ExperienceComponent } from './components/experience/experience.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { ProjectsComponent } from './components/projects/projects.component';
+import { EducationComponent } from './components/education/education.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { AnimationService } from './services/animation.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule,
     HeaderComponent,
     HeroComponent,
     AboutComponent,
+    ExperienceComponent,
     SkillsComponent,
     ProjectsComponent,
-    ContactComponent
+    EducationComponent,
+    ContactComponent,
   ],
-  template: `
-    <app-header></app-header>
-    <main>
-      <app-hero></app-hero>
-      <app-about class="section"></app-about>
-      <app-skills class="section"></app-skills>
-      <app-projects class="section"></app-projects>
-      <app-contact class="section"></app-contact>
-    </main>
-  `,
-  styles: [`
-    main {
-      min-height: 100vh;
-    }
-
-    .smooth-scroll {
-      overflow-y: auto;
-      scroll-behavior: smooth;
-    }
-  `]
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'Portfolio';
-
-  constructor(private animationService: AnimationService) {}
-
-  ngAfterViewInit() {
-    this.animationService.initializeAnimations();
-  }
+  readonly title = 'Gabriel Voidaleski | Desenvolvedor Full Stack';
 }

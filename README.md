@@ -1,25 +1,30 @@
-# MyPortfolio
+# Portfólio — Gabriel Voidaleski
 
-## Descrição
+Portfólio profissional de Gabriel Voidaleski, Desenvolvedor Full Stack. O site apresenta experiência profissional, competências técnicas, o projeto Appunture, formação e canais de contato.
 
-MyPortfolio é um aplicativo web de portfólio pessoal desenvolvido com Angular. Ele apresenta minhas habilidades, projetos e informações de contato de forma elegante e responsiva. O objetivo deste projeto é demonstrar minha experiência como desenvolvedor Full Stack e facilitar a visualização de meus trabalhos.
+## Stack
 
-## Tecnologias Utilizadas
+- Angular 19 com componentes standalone
+- TypeScript
+- CSS responsivo sem framework visual
+- Renderização no servidor e prerenderização via Angular SSR
 
-- **Frontend:**
-  - Angular
-  - TypeScript
-  - HTML5
-  - CSS3
+## Desenvolvimento local
 
-- **Ferramentas:**
-  - Angular CLI
-  - Maven
-  - RxJS
-  - Zone.js
-  - Font Awesome
+```bash
+npm ci
+npm start
+```
 
-## Demonstração
+O servidor de desenvolvimento fica disponível em `http://localhost:4200`.
 
-Acesse a versão em produção do aplicativo [aqui](https://gvoida.vercel.app/).
+## Validação
 
+```bash
+npm test -- --watch=false --browsers=ChromeHeadless
+npm run build
+```
+
+## Conteúdo
+
+As informações profissionais são mantidas a partir do currículo de Gabriel. O PDF para download está em `src/assets/curriculo-gabriel-voidaleski.pdf`.

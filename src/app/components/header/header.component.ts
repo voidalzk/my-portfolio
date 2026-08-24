@@ -1,231 +1,242 @@
-import { Component, HostListener, PLATFORM_ID, Inject } from '@angular/core';
-import { CommonModule, AsyncPipe, isPlatformBrowser } from '@angular/common';
-import { gsap } from 'gsap';
+import { AsyncPipe } from '@angular/common';
+import { Component, HostListener, inject } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, AsyncPipe],
+  imports: [AsyncPipe],
   template: `
-    <header class="header" [class.scrolled]="isScrolled">
-      <div class="container">
-        <nav class="nav">
-          <div class="logo">Gv</div>
-          <div class="nav-controls">
-            <button class="theme-toggle" (click)="toggleTheme()" [attr.aria-label]="(isDark$ | async) ? 'Switch to light mode' : 'Switch to dark mode'">
-              <i class="theme-icon" [class.dark]="isDark$ | async"></i>
-            </button>
-            <button class="menu-toggle" (click)="toggleMenu()" [class.active]="isMenuOpen">
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
-          </div>
-          <ul class="nav-links" [class.active]="isMenuOpen">
-            <li><a href="#about" (click)="closeMenu()">Sobre</a></li>
-            <li><a href="#skills" (click)="closeMenu()">Habilidades</a></li>
-            <li><a href="#projects" (click)="closeMenu()">Projetos</a></li>
-            <li><a (click)="downloadCurriculo(); closeMenu()">Currículo</a></li>
-            <li><a href="#contact" (click)="closeMenu()">Contato</a></li>
-          </ul>
-        </nav>
-      </div>
+    <header class="site-header" [class.scrolled]="isScrolled">
+      <nav class="container nav" aria-label="Navegação principal">
+        <a class="brand" href="#inicio" aria-label="Gabriel Voidaleski — início">
+          <span class="brand-mark" aria-hidden="true">GV</span>
+          <span class="brand-copy">Gabriel<br />Voidaleski</span>
+        </a>
+
+        <div class="nav-actions">
+          <button
+            class="theme-toggle"
+            type="button"
+            (click)="toggleTheme()"
+            [attr.aria-label]="(isDark$ | async) ? 'Ativar tema claro' : 'Ativar tema escuro'"
+          >
+            <span aria-hidden="true">{{ (isDark$ | async) ? '☼' : '◐' }}</span>
+          </button>
+          <button
+            class="menu-toggle"
+            type="button"
+            (click)="toggleMenu()"
+            [attr.aria-expanded]="isMenuOpen"
+            aria-controls="menu-principal"
+            [attr.aria-label]="isMenuOpen ? 'Fechar menu' : 'Abrir menu'"
+          >
+            <span></span><span></span>
+          </button>
+        </div>
+
+        <ul id="menu-principal" class="nav-links" [class.open]="isMenuOpen">
+          <li><a href="#sobre" (click)="closeMenu()">Sobre</a></li>
+          <li><a href="#experiencia" (click)="closeMenu()">Experiência</a></li>
+          <li><a href="#competencias" (click)="closeMenu()">Competências</a></li>
+          <li><a href="#appunture" (click)="closeMenu()">Appunture</a></li>
+          <li><a href="#contato" (click)="closeMenu()">Contato</a></li>
+          <li>
+            <a class="resume-link" href="assets/curriculo-gabriel-voidaleski.pdf" download>
+              Currículo <span aria-hidden="true">↓</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </header>
   `,
   styles: [`
-    .header {
+    .site-header {
       position: fixed;
-      width: 100%;
+      inset: 0 0 auto;
       z-index: 1000;
-      padding: 0.8rem;
-      transition: var(--transition);
-      background: var(--header-bg);
-      backdrop-filter: blur(12px);
-      height: 60px;
-      margin: 0.5rem auto;
-      border-radius: 12px;
-      max-width: calc(100% - 2rem);
-      left: 50%;
-      transform: translateX(-50%);
+      border-bottom: 1px solid transparent;
+      background: transparent;
+      transition: background 180ms ease, border-color 180ms ease;
     }
 
-    .header.scrolled {
-      background: var(--header-bg-scrolled);
-      box-shadow: var(--shadow);
+    .site-header.scrolled {
+      border-color: var(--line);
+      background: var(--nav-bg);
+      backdrop-filter: blur(18px);
     }
 
     .nav {
       display: flex;
-      justify-content: space-between;
+      min-height: 5rem;
       align-items: center;
-      height: 100%;
-      max-width: 100%;
-      padding: 0 1rem;
+      justify-content: space-between;
+      gap: 2rem;
     }
 
-    .logo {
-      font-size: 1.3rem;
+    .brand {
+      order: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 2.45rem;
+      height: 2.45rem;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+    }
+
+    .brand-copy {
+      font-size: 0.78rem;
       font-weight: 700;
-      color: #fff;
-      font-family: 'MuseoModerno', sans-serif;
+      letter-spacing: 0.04em;
+      line-height: 1.05;
+      text-transform: uppercase;
     }
 
     .nav-links {
+      order: 2;
       display: flex;
-      gap: 1.5rem;
-      list-style: none;
-      margin: 0;
+      align-items: center;
+      gap: clamp(1rem, 2vw, 1.65rem);
       padding: 0;
+      margin: 0 0 0 auto;
+      list-style: none;
     }
 
     .nav-links a {
+      color: var(--ink-soft);
+      font-size: 0.84rem;
+      font-weight: 700;
       text-decoration: none;
-      color: rgba(255, 255, 255, 0.85);
-      font-weight: 500;
-      font-size: 0.9rem;
-      transition: var(--transition);
-      cursor: pointer;
     }
 
     .nav-links a:hover {
-      color: #fff;
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+      color: var(--signal-deep);
     }
 
-    .nav-controls {
-      display: flex;
+    .nav-links .resume-link {
+      display: inline-flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.45rem;
+      padding: 0.55rem 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink);
     }
 
-    .theme-toggle {
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0.5rem;
+    .nav-actions {
+      order: 3;
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 0.45rem;
+    }
+
+    .theme-toggle,
+    .menu-toggle {
+      display: grid;
+      width: 2.75rem;
+      height: 2.75rem;
+      place-items: center;
+      border: 1px solid var(--line);
       border-radius: 50%;
-      transition: var(--transition);
-    }
-
-    .theme-toggle:hover {
-      background: var(--background-rgb);
-    }
-
-    .theme-icon {
-      width: 20px;
-      height: 20px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>') no-repeat center;
-      transition: transform 0.3s ease;
-    }
-
-    .theme-icon.dark {
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>') no-repeat center;
-      transform: rotate(360deg);
+      background: var(--paper-raised);
+      color: var(--ink);
+      cursor: pointer;
     }
 
     .menu-toggle {
+      position: relative;
       display: none;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 21px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      z-index: 10;
     }
 
     .menu-toggle span {
-      width: 100%;
-      height: 2px;
-      background-color: #fff;
-      transition: var(--transition);
-      border-radius: 4px;
+      position: absolute;
+      width: 1rem;
+      height: 1px;
+      background: currentColor;
+      transition: transform 180ms ease;
     }
 
-    @media (max-width: 768px) {
-      .header {
-        max-width: calc(100% - 1rem);
-        margin: 0.25rem auto;
-      }
+    .menu-toggle span:first-child { transform: translateY(-3px); }
+    .menu-toggle span:last-child { transform: translateY(3px); }
+    .menu-toggle[aria-expanded='true'] span:first-child { transform: rotate(45deg); }
+    .menu-toggle[aria-expanded='true'] span:last-child { transform: rotate(-45deg); }
 
-      .menu-toggle {
-        display: flex;
-      }
+    @media (max-width: 900px) {
+      .menu-toggle { display: grid; }
 
       .nav-links {
-        display: flex;
-        flex-direction: column;
         position: fixed;
-        top: 0;
-        right: -100%;
-        width: 70%;
-        height: 100vh;
-        background: var(--background-rgb);
-        padding: 80px 40px;
-        transition: var(--transition);
-        align-items: center;
-        gap: 2rem;
+        inset: 5rem 1rem auto;
+        display: grid;
+        gap: 0;
+        padding: 1rem;
+        border: 1px solid var(--line);
+        border-radius: 1.25rem;
+        background: var(--paper-raised);
+        box-shadow: var(--shadow);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-0.75rem);
+        transition: opacity 160ms ease, transform 160ms ease;
       }
 
-      .nav-links.active {
-        right: 0;
-        box-shadow: var(--box-shadow);
+      .nav-links.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
       }
 
       .nav-links a {
-        font-size: 1.1rem;
-        color: rgba(255, 255, 255, 0.85);
+        display: flex;
+        min-height: 3.25rem;
+        align-items: center;
+        padding: 0 0.75rem;
+        border-bottom: 1px solid var(--line);
+        font-size: 1rem;
       }
 
-      .nav-links a:hover {
-        color: #fff;
-      }
+      .nav-links li:last-child a { border-bottom: 0; }
+      .nav-links .resume-link { border: 0; border-radius: 0; }
     }
-  `]
+  `],
 })
 export class HeaderComponent {
+  private readonly themeService = inject(ThemeService);
+  readonly isDark$ = this.themeService.isDark();
   isScrolled = false;
   isMenuOpen = false;
-  isDark$;
-
-  constructor(
-    private themeService: ThemeService,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {
-    if (isPlatformBrowser(this.platformId)) {
-      this.isDark$ = this.themeService.isDark();
-    }
-  }
 
   @HostListener('window:scroll')
-  onScroll() {
-    this.isScrolled = window.scrollY > 50;
+  onScroll(): void {
+    this.isScrolled = window.scrollY > 24;
   }
 
-  toggleTheme() {
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    this.closeMenu();
+  }
+
+  toggleTheme(): void {
     this.themeService.toggleTheme();
   }
 
-  toggleMenu() {
+  toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
-    document.body.style.overflow = this.isMenuOpen ? 'hidden' : '';
   }
 
-  closeMenu() {
+  closeMenu(): void {
     this.isMenuOpen = false;
-    document.body.style.overflow = '';
-  }
-
-  downloadCurriculo() {
-    const link = document.createElement('a');
-    link.href = 'assets/curriculo.pdf';
-    link.download = 'Gabriel_Voidaleski_Curriculo.pdf';
-    link.click();
   }
 }

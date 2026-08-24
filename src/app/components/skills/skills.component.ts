@@ -1,108 +1,156 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+interface SkillGroup {
+  index: string;
+  title: string;
+  skills: string[];
+  note?: string;
+}
 
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [CommonModule],
   template: `
-    <section id="skills" class="skills section">
+    <section id="competencias" class="skills section" aria-labelledby="skills-title">
       <div class="container">
-        <h2 class="section-title">Habilidades</h2>
-        <div class="skills-grid">
-          <div class="skill-category">
-            <h3>Frontend</h3>
-            <ul class="skill-list">
-              <li><i class="fab fa-html5"></i> HTML5</li>
-              <li><i class="fab fa-css3-alt"></i> CSS3</li>
-              <li><i class="fab fa-js"></i> JavaScript</li>
-              <li><i class="fab fa-angular"></i> Angular</li>
-            </ul>
+        <div class="skills-heading">
+          <div>
+            <h2 id="skills-title" class="section-heading">04 — Competências técnicas</h2>
           </div>
-          <div class="skill-category">
-            <h3>Backend</h3>
-            <ul class="skill-list">
-              <li><i class="fab fa-node-js"></i> Node.js</li>
-              <li><i class="fab fa-java"></i> Java</li>
-              <li><i class="fas fa-leaf"></i> Spring Boot</li>
-            </ul>
-          </div>
-          <div class="skill-category">
-            <h3>Ferramentas</h3>
-            <ul class="skill-list">
-              <li><i class="fab fa-git-alt"></i> Git</li>
-              <li><i class="fas fa-database"></i> SQL</li>
-              <li><i class="fab fa-docker"></i> Docker</li>
-              <li><i class="devicon-postgresql-plain"></i> PostgreSQL</li>
-              <li><i class="devicon-mysql-plain"></i> MySQL</li>
-            </ul>
-          </div>
+          <p class="section-lead">
+            Tecnologias utilizadas em experiências profissionais, formação acadêmica e projetos.
+          </p>
+        </div>
+
+        <div class="skill-groups">
+          @for (group of groups; track group.index) {
+            <article>
+              <div class="group-title">
+                <span>{{ group.index }}</span>
+                <h3>{{ group.title }}</h3>
+              </div>
+              <div class="skill-list">
+                @for (skill of group.skills; track skill) {
+                  <span>{{ skill }}</span>
+                }
+              </div>
+              @if (group.note) {
+                <p>{{ group.note }}</p>
+              }
+            </article>
+          }
+        </div>
+
+        <div class="workflow-note">
+          <span class="workflow-label">Modo de trabalho</span>
+          <p>Kanban · Git/GitHub/GitLab · programação com Claude, Codex e GitHub Copilot</p>
         </div>
       </div>
     </section>
   `,
   styles: [`
-    .skills {
-      background-color: var(--background);
-      padding: 6rem 0;
-    }
+    .skills { background: var(--paper); }
 
-    .section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      color: var(--text);
-      margin-bottom: 3rem;
-    }
-
-    .skills-grid {
+    .skills-heading {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.5fr);
+      align-items: end;
+      gap: clamp(2rem, 7vw, 7rem);
     }
 
-    .skill-category {
-      background: var(--section-bg);
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: var(--shadow);
+    .skill-groups {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: clamp(3.5rem, 7vw, 6rem);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
     }
 
-    .skill-category h3 {
-      color: var(--text);
-      margin-bottom: 1.5rem;
-      font-size: 1.5rem;
-      text-align: center;
+    article {
+      min-height: 260px;
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .group-title {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    .group-title span {
+      color: var(--signal-deep);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+    }
+
+    h3 {
+      margin: 0;
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 2.7vw, 2.25rem);
+      font-weight: 500;
+      letter-spacing: -0.035em;
     }
 
     .skill-list {
-      list-style: none;
-    }
-
-    .skill-list li {
-      margin: 1rem 0;
-      font-size: 1.1rem;
       display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 2rem;
+    }
+
+    .skill-list span {
+      padding: 0.45rem 0.75rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--paper-raised);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+    }
+
+    article p {
+      margin: 1.25rem 0 0;
+      color: var(--ink-soft);
+      font-size: 0.88rem;
+    }
+
+    .workflow-note {
+      display: grid;
+      grid-template-columns: minmax(160px, 0.28fr) 1fr;
       align-items: center;
-      gap: 0.5rem;
-      color: var(--section-text);
+      gap: 2rem;
+      padding: 1.7rem 0;
+      border-bottom: 1px solid var(--line);
     }
 
-    .skill-list i {
-      color: var(--text);
-      font-size: 1.2rem;
+    .workflow-label {
+      color: var(--signal-deep);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
     }
 
-    @media (max-width: 768px) {
-      .skills {
-        padding: 4rem 0;
-      }
+    .workflow-note p { margin: 0; color: var(--ink-soft); }
 
-      .section-title {
-        font-size: 2rem;
-      }
+    @media (max-width: 760px) {
+      .skills-heading, .skill-groups { grid-template-columns: 1fr; }
+      .workflow-note { grid-template-columns: 1fr; gap: 0.5rem; }
+      article { min-height: auto; }
     }
-  `]
+  `],
 })
-export class SkillsComponent {}
+export class SkillsComponent {
+  readonly groups: SkillGroup[] = [
+    { index: '01', title: 'Linguagens', skills: ['PHP', 'JavaScript', 'TypeScript', 'Python', 'Java'] },
+    { index: '02', title: 'Frameworks & aplicações', skills: ['Vue.js', 'React Native', 'Angular', 'Node.js', 'Spring Boot'] },
+    {
+      index: '03',
+      title: 'Dados',
+      skills: ['DB2', 'MySQL', 'PostgreSQL', 'MongoDB', 'Oracle Database'],
+      note: 'MongoDB e Oracle Database: conhecimentos registrados no currículo.',
+    },
+    { index: '04', title: 'Infraestrutura & IA', skills: ['SUSE Linux', 'Google Cloud', 'OAuth', 'Integrações com IA', 'RAG'] },
+  ];
+}
