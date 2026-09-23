@@ -2,21 +2,26 @@
   <div class="hero-grid" aria-hidden="true"></div>
   <div class="container hero-layout">
     <div class="hero-copy">
-      <p class="eyebrow"><span></span> Desenvolvedor Full Stack · Curitiba, PR</p>
+      <p class="eyebrow"><span></span> {{ language.isEnglish() ? 'Full Stack Developer' : 'Desenvolvedor Full Stack' }} · Curitiba, PR</p>
       <h1 id="hero-title">Gabriel Voidaleski</h1>
       <p class="hero-lead">
-        Formado em Análise e Desenvolvimento de Sistemas pela UFPR, com experiência em aplicações web,
-        automações, bancos de dados, servidores Linux e integrações com inteligência artificial.
+        @if (language.isEnglish()) {
+          Systems Analysis and Development graduate from UFPR. Experience building APIs, Node.js backends
+          and full stack applications, with a background in databases and AI integrations.
+        } @else {
+          Formado em Análise e Desenvolvimento de Sistemas pela UFPR. Experiência em APIs, backends com Node.js
+          e aplicações full stack, além de bancos de dados e integrações com IA.
+        }
       </p>
       <div class="hero-actions">
-        <a class="button button-primary" href="#experiencia">Ver experiência <span aria-hidden="true">↘</span></a>
-        <a class="button button-secondary" href="assets/curriculo-gabriel-voidaleski.pdf" download>Baixar currículo <span aria-hidden="true">↓</span></a>
+        <a class="button button-primary" href="#experiencia">{{ language.isEnglish() ? 'View experience' : 'Ver experiência' }} <span aria-hidden="true">↘</span></a>
+        <a class="button button-secondary" [href]="language.resumeUrl()" [attr.download]="language.isEnglish() ? 'Gabriel_Voidaleski_CV_EN.pdf' : 'Gabriel_Voidaleski_CV_PT.pdf'">{{ language.isEnglish() ? 'Download resume' : 'Baixar currículo' }} <span aria-hidden="true">↓</span></a>
       </div>
-      <ul class="hero-stack" aria-label="Principais áreas de atuação">
+      <ul class="hero-stack" [attr.aria-label]="language.isEnglish() ? 'Main areas of work' : 'Principais áreas de atuação'">
         <li>Full Stack</li>
-        <li>Automações</li>
-        <li>Dados & Linux</li>
-        <li>IA & RAG</li>
+        <li>APIs & Node.js</li>
+        <li>React & Vue.js</li>
+        <li>{{ language.isEnglish() ? 'AI & RAG' : 'IA & RAG' }}</li>
       </ul>
     </div>
 
@@ -29,11 +34,11 @@
           height="1280"
           fetchpriority="high"
         />
-        <span class="portrait-index" aria-hidden="true">01 / PERFIL</span>
+        <span class="portrait-index" aria-hidden="true">01 / {{ language.isEnglish() ? 'PROFILE' : 'PERFIL' }}</span>
       </div>
-      <div class="code-note" aria-label="Tecnologias em destaque">
+      <div class="code-note" [attr.aria-label]="language.isEnglish() ? 'Featured technologies' : 'Tecnologias em destaque'">
         <span class="code-dot"></span>
-        <code>PHP · Vue.js · SpringBoot<br />Node.js · MySql · SUSE Linux</code>
+        <code>Node.js · Vue.js · React<br />PHP · Spring Boot · SQL</code>
       </div>
     </div>
   </div>

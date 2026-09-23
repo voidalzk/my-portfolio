@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-education',
@@ -7,18 +8,18 @@ import { Component } from '@angular/core';
     <section id="formacao" class="education section" aria-labelledby="education-title">
       <div class="container education-layout">
         <div>
-          <h2 id="education-title" class="section-heading">06 — Formação acadêmica</h2>
+          <h2 id="education-title" class="section-heading">06 — {{ language.isEnglish() ? 'Education' : 'Formação acadêmica' }}</h2>
         </div>
 
         <div class="education-list">
           <article>
-            <p class="date">Concluído em 08/2026</p>
-            <h3>Tecnologia em Análise e Desenvolvimento de Sistemas</h3>
-            <p class="institution">Universidade Federal do Paraná — UFPR</p>
+            <p class="date">{{ language.isEnglish() ? 'Completed Aug 2026' : 'Concluído em 08/2026' }}</p>
+            <h3>{{ language.isEnglish() ? 'Technology Degree in Systems Analysis and Development' : 'Tecnologia em Análise e Desenvolvimento de Sistemas' }}</h3>
+            <p class="institution">{{ language.isEnglish() ? 'Federal University of Paraná — UFPR' : 'Universidade Federal do Paraná — UFPR' }}</p>
           </article>
           <article>
-            <p class="date">Concluído em 2022</p>
-            <h3>Inglês avançado</h3>
+            <p class="date">{{ language.isEnglish() ? 'Completed 2022' : 'Concluído em 2022' }}</p>
+            <h3>{{ language.isEnglish() ? 'Advanced English' : 'Inglês avançado' }}</h3>
             <p class="institution">English Live Corporate</p>
           </article>
         </div>
@@ -70,4 +71,6 @@ import { Component } from '@angular/core';
     }
   `],
 })
-export class EducationComponent {}
+export class EducationComponent {
+  readonly language = inject(LanguageService);
+}

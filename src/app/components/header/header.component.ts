@@ -1,6 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, HostListener, inject } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-header',
@@ -8,18 +9,25 @@ import { ThemeService } from '../../services/theme.service';
   imports: [AsyncPipe],
   template: `
     <header class="site-header" [class.scrolled]="isScrolled">
-      <nav class="container nav" aria-label="Navegação principal">
-        <a class="brand" href="#inicio" aria-label="Gabriel Voidaleski — início">
+      <nav class="container nav" [attr.aria-label]="language.isEnglish() ? 'Main navigation' : 'Navegação principal'">
+        <a class="brand" href="#inicio" [attr.aria-label]="language.isEnglish() ? 'Gabriel Voidaleski — home' : 'Gabriel Voidaleski — início'">
           <span class="brand-mark" aria-hidden="true">GV</span>
           <span class="brand-copy">Gabriel<br />Voidaleski</span>
         </a>
 
         <div class="nav-actions">
           <button
+            class="language-toggle"
+            type="button"
+            (click)="language.toggle()"
+            [attr.aria-label]="language.isEnglish() ? 'Mudar idioma para português' : 'Switch language to English'"
+            [attr.title]="language.isEnglish() ? 'Português' : 'English'"
+          >{{ language.isEnglish() ? 'PT' : 'EN' }}</button>
+          <button
             class="theme-toggle"
             type="button"
             (click)="toggleTheme()"
-            [attr.aria-label]="(isDark$ | async) ? 'Ativar tema claro' : 'Ativar tema escuro'"
+            [attr.aria-label]="(isDark$ | async) ? (language.isEnglish() ? 'Activate light theme' : 'Ativar tema claro') : (language.isEnglish() ? 'Activate dark theme' : 'Ativar tema escuro')"
           >
             <span aria-hidden="true">{{ (isDark$ | async) ? '☼' : '◐' }}</span>
           </button>
@@ -29,21 +37,21 @@ import { ThemeService } from '../../services/theme.service';
             (click)="toggleMenu()"
             [attr.aria-expanded]="isMenuOpen"
             aria-controls="menu-principal"
-            [attr.aria-label]="isMenuOpen ? 'Fechar menu' : 'Abrir menu'"
+            [attr.aria-label]="isMenuOpen ? (language.isEnglish() ? 'Close menu' : 'Fechar menu') : (language.isEnglish() ? 'Open menu' : 'Abrir menu')"
           >
             <span></span><span></span>
           </button>
         </div>
 
         <ul id="menu-principal" class="nav-links" [class.open]="isMenuOpen">
-          <li><a href="#sobre" (click)="closeMenu()">Sobre</a></li>
-          <li><a href="#experiencia" (click)="closeMenu()">Experiência</a></li>
-          <li><a href="#competencias" (click)="closeMenu()">Competências</a></li>
+          <li><a href="#sobre" (click)="closeMenu()">{{ language.isEnglish() ? 'About' : 'Sobre' }}</a></li>
+          <li><a href="#experiencia" (click)="closeMenu()">{{ language.isEnglish() ? 'Experience' : 'Experiência' }}</a></li>
+          <li><a href="#competencias" (click)="closeMenu()">{{ language.isEnglish() ? 'Skills' : 'Competências' }}</a></li>
           <li><a href="#appunture" (click)="closeMenu()">Appunture</a></li>
-          <li><a href="#contato" (click)="closeMenu()">Contato</a></li>
+          <li><a href="#contato" (click)="closeMenu()">{{ language.isEnglish() ? 'Contact' : 'Contato' }}</a></li>
           <li>
-            <a class="resume-link" href="assets/curriculo-gabriel-voidaleski.pdf" download>
-              Currículo <span aria-hidden="true">↓</span>
+            <a class="resume-link" [href]="language.resumeUrl()" [attr.download]="language.isEnglish() ? 'Gabriel_Voidaleski_CV_EN.pdf' : 'Gabriel_Voidaleski_CV_PT.pdf'" (click)="closeMenu()">
+              {{ language.isEnglish() ? 'Resume' : 'Currículo' }} <span aria-hidden="true">↓</span>
             </a>
           </li>
         </ul>
@@ -143,6 +151,7 @@ import { ThemeService } from '../../services/theme.service';
     }
 
     .theme-toggle,
+    .language-toggle,
     .menu-toggle {
       display: grid;
       width: 2.75rem;
@@ -154,6 +163,16 @@ import { ThemeService } from '../../services/theme.service';
       color: var(--ink);
       cursor: pointer;
     }
+
+    .language-toggle {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .language-toggle:hover,
+    .theme-toggle:hover { border-color: var(--signal-deep); color: var(--signal-deep); }
 
     .menu-toggle {
       position: relative;
@@ -214,6 +233,7 @@ import { ThemeService } from '../../services/theme.service';
 })
 export class HeaderComponent {
   private readonly themeService = inject(ThemeService);
+  readonly language = inject(LanguageService);
   readonly isDark$ = this.themeService.isDark();
   isScrolled = false;
   isMenuOpen = false;

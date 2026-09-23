@@ -27,4 +27,4 @@ npm run build
 
 ## Conteúdo
 
-As informações profissionais são mantidas a partir do currículo de Gabriel. O PDF para download está em `src/assets/curriculo-gabriel-voidaleski.pdf`.
+O conteúdo em português e inglês é baseado nos currículos atualizados de Gabriel. O seletor de idioma no cabeçalho alterna o conteúdo, os metadados e o PDF para download. Os arquivos estão em `src/assets/curriculum-gabriel-voidaleski-pt.pdf` e `src/assets/curriculum-gabriel-voidaleski-en.pdf`.

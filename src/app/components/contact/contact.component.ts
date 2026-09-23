@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-contact',
@@ -7,26 +8,29 @@ import { Component } from '@angular/core';
     <section id="contato" class="contact section" aria-labelledby="contact-title">
       <div class="contact-orbit" aria-hidden="true"></div>
       <div class="container contact-content">
-        <h2 id="contact-title" class="section-heading">07 — Contato</h2>
+        <h2 id="contact-title" class="section-heading">07 — {{ language.isEnglish() ? 'Contact' : 'Contato' }}</h2>
         <p class="contact-lead">
-          Contato profissional para oportunidades em desenvolvimento de software e projetos.
+          {{ language.isEnglish()
+            ? 'Get in touch about software development opportunities and projects.'
+            : 'Contato profissional para oportunidades em desenvolvimento de software e projetos.' }}
         </p>
 
         <div class="contact-actions">
           <a class="email" href="mailto:voidalzk@gmail.com">
-            <span>Escreva para</span>
+            <span>{{ language.isEnglish() ? 'Email me at' : 'Escreva para' }}</span>
             voidalzk&#64;gmail.com <strong aria-hidden="true">↗</strong>
           </a>
-          <div class="social-links" aria-label="Links profissionais">
+          <div class="social-links" [attr.aria-label]="language.isEnglish() ? 'Professional links' : 'Links profissionais'">
             <a href="https://www.linkedin.com/in/gabriel-voidaleski-40864a215/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
             <a href="https://github.com/voidalzk" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-            <a href="assets/curriculo-gabriel-voidaleski.pdf" download>Currículo ↓</a>
+            <a [href]="language.resumeUrl()" [attr.download]="language.isEnglish() ? 'Gabriel_Voidaleski_CV_EN.pdf' : 'Gabriel_Voidaleski_CV_PT.pdf'">{{ language.isEnglish() ? 'Resume (EN)' : 'Currículo (PT)' }} ↓</a>
+            <a [href]="language.isEnglish() ? 'assets/curriculum-gabriel-voidaleski-pt.pdf' : 'assets/curriculum-gabriel-voidaleski-en.pdf'" [attr.download]="language.isEnglish() ? 'Gabriel_Voidaleski_CV_PT.pdf' : 'Gabriel_Voidaleski_CV_EN.pdf'">{{ language.isEnglish() ? 'Resume (PT)' : 'Currículo (EN)' }} ↓</a>
           </div>
         </div>
 
         <footer>
           <span>Gabriel Voidaleski · Curitiba, PR</span>
-          <span>Portfólio desenvolvido em Angular · {{ year }}</span>
+          <span>{{ language.isEnglish() ? 'Portfolio built with Angular' : 'Portfólio desenvolvido em Angular' }} · {{ year }}</span>
         </footer>
       </div>
     </section>
@@ -136,5 +140,6 @@ import { Component } from '@angular/core';
   `],
 })
 export class ContactComponent {
+  readonly language = inject(LanguageService);
   readonly year = new Date().getFullYear();
 }

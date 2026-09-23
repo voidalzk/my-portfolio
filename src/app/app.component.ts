@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { LanguageService } from './services/language.service';
 import { HeaderComponent } from './components/header/header.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { AboutComponent } from './components/about/about.component';
@@ -25,5 +26,6 @@ import { ContactComponent } from './components/contact/contact.component';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
+  readonly language = inject(LanguageService);
   readonly title = 'Gabriel Voidaleski | Desenvolvedor Full Stack';
 }

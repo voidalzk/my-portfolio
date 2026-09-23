@@ -2,11 +2,11 @@
   <div class="container">
     <div class="project-heading">
       <div>
-        <p class="section-heading">05 — Projeto acadêmico em destaque</p>
+        <p class="section-heading">05 — {{ language.isEnglish() ? 'Featured academic project' : 'Projeto acadêmico em destaque' }}</p>
         <h2 id="project-title" class="project-name">Appunture<span>.</span></h2>
       </div>
       <div class="project-meta">
-        <span>TCC · 2026</span>
+        <span>{{ language.isEnglish() ? 'Final degree project' : 'TCC' }} · 2025</span>
         <span>Mobile + API + Cloud</span>
       </div>
     </div>
@@ -14,47 +14,50 @@
     <div class="project-layout">
       <div class="project-story">
         <p class="project-lead">
-          Aplicativo criado para auxiliar profissionais de acupuntura na consulta e identificação de pontos corporais.
+          {{ language.isEnglish()
+            ? 'An application that helps acupuncture practitioners look up and identify points on the body.'
+            : 'Aplicativo para auxiliar profissionais de acupuntura na consulta e identificação de pontos corporais.' }}
         </p>
 
         <div class="project-details">
           <article>
-            <span>01 / Experiência</span>
-            <h3>Consulta visual</h3>
-            <p>Mapa corporal 3D para apoiar a identificação e consulta de pontos no aplicativo.</p>
+            <span>01 / {{ language.isEnglish() ? 'Interface' : 'Interface' }}</span>
+            <h3>{{ language.isEnglish() ? 'Visual lookup' : 'Consulta visual' }}</h3>
+            <p>{{ language.isEnglish() ? 'A 3D body map to support point identification and lookup.' : 'Mapa corporal 3D para apoiar a identificação e consulta de pontos.' }}</p>
           </article>
           <article>
-            <span>02 / Inteligência</span>
-            <h3>Apoio com IA</h3>
-            <p>Integração com inteligência artificial como recurso de apoio à utilização da plataforma.</p>
+            <span>02 / {{ language.isEnglish() ? 'Intelligence' : 'Inteligência' }}</span>
+            <h3>{{ language.isEnglish() ? 'AI support' : 'Apoio com IA' }}</h3>
+            <p>{{ language.isEnglish() ? 'AI integration to support use of the application.' : 'Integração com inteligência artificial para apoiar o uso do aplicativo.' }}</p>
           </article>
           <article>
-            <span>03 / Plataforma</span>
-            <h3>Base segura</h3>
-            <p>Infraestrutura no Google Cloud e autenticação com OAuth.</p>
+            <span>03 / {{ language.isEnglish() ? 'Platform' : 'Plataforma' }}</span>
+            <h3>{{ language.isEnglish() ? 'Cloud and offline use' : 'Cloud e uso offline' }}</h3>
+            <p>{{ language.isEnglish() ? 'Google Cloud infrastructure, OAuth authentication and an offline-first approach for limited connectivity.' : 'Infraestrutura no Google Cloud, autenticação com OAuth e estratégia offline-first para conectividade limitada.' }}</p>
           </article>
         </div>
 
-        <div class="project-stack" aria-label="Tecnologias do Appunture">
+        <div class="project-stack" [attr.aria-label]="language.isEnglish() ? 'Appunture technologies' : 'Tecnologias do Appunture'">
           <span>React Native</span>
           <span>Spring Boot</span>
           <span>Google Cloud</span>
           <span>OAuth</span>
-          <span>Inteligência artificial</span>
+          <span>{{ language.isEnglish() ? 'Artificial intelligence' : 'Inteligência artificial' }}</span>
+          <span>Offline-first</span>
         </div>
       </div>
 
-      <div class="project-visual" aria-label="Representação da arquitetura do Appunture">
+      <div class="project-visual" [attr.aria-label]="language.isEnglish() ? 'Appunture architecture diagram' : 'Representação da arquitetura do Appunture'">
         <div class="orbit orbit-one"></div>
         <div class="orbit orbit-two"></div>
         <div class="core">
           <span>APP</span>
           <strong>Appunture</strong>
         </div>
-        <div class="node node-mobile"><small>Interface</small><strong>React Native</strong></div>
+        <div class="node node-mobile"><small>{{ language.isEnglish() ? 'Interface' : 'Interface' }}</small><strong>React Native</strong></div>
         <div class="node node-api"><small>API</small><strong>Spring Boot</strong></div>
-        <div class="node node-cloud"><small>Infra</small><strong>Google Cloud</strong></div>
-        <div class="node node-ai"><small>Recurso</small><strong>IA</strong></div>
+        <div class="node node-cloud"><small>{{ language.isEnglish() ? 'Cloud' : 'Infra' }}</small><strong>Google Cloud</strong></div>
+        <div class="node node-ai"><small>{{ language.isEnglish() ? 'Feature' : 'Recurso' }}</small><strong>{{ language.isEnglish() ? 'AI' : 'IA' }}</strong></div>
       </div>
     </div>
   </div>

@@ -26,4 +26,24 @@ describe('AppComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain('Gabriel Voidaleski');
   });
+
+  it('switches the portfolio and resume link to English', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+
+    const languageButton = compiled.querySelector<HTMLButtonElement>('.language-toggle');
+    expect(languageButton?.textContent?.trim()).toBe('EN');
+    languageButton?.click();
+    fixture.detectChanges();
+
+    expect(compiled.querySelector('#experience-title')?.textContent).toContain('Professional experience');
+    expect(compiled.querySelector<HTMLAnchorElement>('.hero-actions a[download]')?.getAttribute('href'))
+      .toBe('assets/curriculum-gabriel-voidaleski-en.pdf');
+    expect(document.documentElement.lang).toBe('en');
+
+    languageButton?.click();
+    fixture.detectChanges();
+    expect(document.documentElement.lang).toBe('pt-BR');
+  });
 });

@@ -1,30 +1,30 @@
 <section id="experiencia" class="experience section" aria-labelledby="experience-title">
   <div class="container">
-    <h2 id="experience-title" class="section-heading">03 — Experiência profissional</h2>
+    <h2 id="experience-title" class="section-heading">03 — {{ language.isEnglish() ? 'Professional experience' : 'Experiência profissional' }}</h2>
 
     <div class="timeline">
-      @for (experience of experiences; track experience.company) {
+      @for (experience of experiences; track experience.companyPt) {
         <article class="experience-item">
           <div class="experience-meta">
-            <p class="period">{{ experience.period }}</p>
+            <p class="period">{{ language.isEnglish() ? experience.periodEn : experience.periodPt }}</p>
             <span class="timeline-dot" aria-hidden="true"></span>
           </div>
           <div class="experience-content">
             <div class="experience-title">
               <div>
-                <h3>{{ experience.company }}</h3>
-                <p class="role">{{ experience.role }}</p>
+                <h3>{{ language.isEnglish() ? experience.companyEn : experience.companyPt }}</h3>
+                <p class="role">{{ language.isEnglish() ? experience.roleEn : experience.rolePt }}</p>
               </div>
-              @if (experience.context) {
-                <p class="context">{{ experience.context }}</p>
+              @if (experience.contextPt) {
+                <p class="context">{{ language.isEnglish() ? experience.contextEn : experience.contextPt }}</p>
               }
             </div>
             <ul>
-              @for (detail of experience.details; track detail) {
+              @for (detail of (language.isEnglish() ? experience.detailsEn : experience.detailsPt); track $index) {
                 <li>{{ detail }}</li>
               }
             </ul>
-            <div class="tags" aria-label="Tecnologias e áreas relacionadas">
+            <div class="tags" [attr.aria-label]="language.isEnglish() ? 'Related technologies and areas' : 'Tecnologias e áreas relacionadas'">
               @for (technology of experience.stack; track technology) {
                 <span>{{ technology }}</span>
               }

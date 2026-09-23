@@ -2,37 +2,45 @@
   <div class="container">
     <div class="about-heading">
       <div>
-        <h2 id="about-title" class="section-heading">02 — Resumo profissional</h2>
+        <h2 id="about-title" class="section-heading">02 — {{ language.isEnglish() ? 'Professional summary' : 'Resumo profissional' }}</h2>
       </div>
       <p class="about-intro">
-        Desenvolvedor formado em Análise e Desenvolvimento de Sistemas pela UFPR, com cerca de um ano e meio
-        de experiência no Banco do Brasil e atuação atual em projetos de software sob demanda.
+        @if (language.isEnglish()) {
+          Full Stack Developer with a degree from UFPR, experience building internal applications at Banco do Brasil
+          and current work on freelance software projects.
+        } @else {
+          Desenvolvedor formado em Análise e Desenvolvimento de Sistemas pela UFPR, com experiência em aplicações
+          corporativas no Banco do Brasil e atuação atual em projetos freelance.
+        }
       </p>
     </div>
 
     <div class="about-grid">
       <article>
         <span>01</span>
-        <h3>Visão ponta a ponta</h3>
+        <h3>{{ language.isEnglish() ? 'Across the stack' : 'Atuação full stack' }}</h3>
         <p>
-          Experiência no desenvolvimento e sustentação de aplicações, bancos de dados, servidores Linux,
-          automações e integrações entre sistemas.
+          {{ language.isEnglish()
+            ? 'Development and maintenance of APIs, web applications, SQL databases, Linux servers and system integrations.'
+            : 'Desenvolvimento e manutenção de APIs, aplicações web, bancos SQL, servidores Linux e integrações entre sistemas.' }}
         </p>
       </article>
       <article>
         <span>02</span>
-        <h3>Tecnologia com contexto</h3>
+        <h3>{{ language.isEnglish() ? 'Enterprise applications' : 'Aplicações corporativas' }}</h3>
         <p>
-          Atuação em ambientes corporativos, entendendo o problema antes da ferramenta e apoiando soluções
-          em diferentes camadas da aplicação.
+          {{ language.isEnglish()
+            ? 'Experience implementing features, improving existing systems and troubleshooting across frontends and backends.'
+            : 'Experiência na implementação de funcionalidades, evolução de sistemas e correção de problemas em frontend e backend.' }}
         </p>
       </article>
       <article>
         <span>03</span>
-        <h3>Aprendizado contínuo</h3>
+        <h3>{{ language.isEnglish() ? 'Continuous learning' : 'Aprendizado contínuo' }}</h3>
         <p>
-          Perfil versátil, com facilidade para aprender novas tecnologias e interesse nas diferentes áreas do
-          desenvolvimento de software.
+          {{ language.isEnglish()
+            ? 'Experience with React, Vue.js, Node.js, Java and Spring Boot, with an interest in learning across software development.'
+            : 'Experiência com React, Vue.js, Node.js, Java e Spring Boot, com interesse em aprender nas diferentes áreas do desenvolvimento.' }}
         </p>
       </article>
     </div>

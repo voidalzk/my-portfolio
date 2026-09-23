@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { LanguageService } from '../../services/language.service';
 
 interface SkillGroup {
   index: string;
-  title: string;
+  titlePt: string;
+  titleEn: string;
   skills: string[];
-  note?: string;
+  notePt?: string;
+  noteEn?: string;
 }
 
 @Component({
@@ -15,10 +18,12 @@ interface SkillGroup {
       <div class="container">
         <div class="skills-heading">
           <div>
-            <h2 id="skills-title" class="section-heading">04 — Competências técnicas</h2>
+            <h2 id="skills-title" class="section-heading">04 — {{ language.isEnglish() ? 'Technical skills' : 'Competências técnicas' }}</h2>
           </div>
           <p class="section-lead">
-            Tecnologias utilizadas em experiências profissionais, formação acadêmica e projetos.
+            {{ language.isEnglish()
+              ? 'Technologies used in professional experience, education and projects.'
+              : 'Tecnologias utilizadas em experiências profissionais, formação acadêmica e projetos.' }}
           </p>
         </div>
 
@@ -27,23 +32,23 @@ interface SkillGroup {
             <article>
               <div class="group-title">
                 <span>{{ group.index }}</span>
-                <h3>{{ group.title }}</h3>
+                <h3>{{ language.isEnglish() ? group.titleEn : group.titlePt }}</h3>
               </div>
               <div class="skill-list">
                 @for (skill of group.skills; track skill) {
                   <span>{{ skill }}</span>
                 }
               </div>
-              @if (group.note) {
-                <p>{{ group.note }}</p>
+              @if (group.notePt) {
+                <p>{{ language.isEnglish() ? group.noteEn : group.notePt }}</p>
               }
             </article>
           }
         </div>
 
         <div class="workflow-note">
-          <span class="workflow-label">Modo de trabalho</span>
-          <p>Kanban · Git/GitHub/GitLab · programação com Claude, Codex e GitHub Copilot</p>
+          <span class="workflow-label">{{ language.isEnglish() ? 'Ways of working' : 'Modo de trabalho' }}</span>
+          <p>Kanban · Scrum · Git/GitHub/GitLab · {{ language.isEnglish() ? 'AI-assisted coding with Claude, Codex and GitHub Copilot' : 'programação assistida por Claude, Codex e GitHub Copilot' }}</p>
         </div>
       </div>
     </section>
@@ -142,15 +147,25 @@ interface SkillGroup {
   `],
 })
 export class SkillsComponent {
+  readonly language = inject(LanguageService);
   readonly groups: SkillGroup[] = [
-    { index: '01', title: 'Linguagens', skills: ['PHP', 'JavaScript', 'TypeScript', 'Python', 'Java'] },
-    { index: '02', title: 'Frameworks & aplicações', skills: ['Vue.js', 'React Native', 'Angular', 'Node.js', 'Spring Boot'] },
+    { index: '01', titlePt: 'Linguagens', titleEn: 'Languages', skills: ['JavaScript', 'TypeScript', 'PHP', 'Python', 'Java'] },
+    { index: '02', titlePt: 'Frameworks & aplicações', titleEn: 'Frameworks & applications', skills: ['React', 'Node.js', 'Vue.js', 'React Native', 'Angular', 'Spring Boot'] },
     {
       index: '03',
-      title: 'Dados',
-      skills: ['DB2', 'MySQL', 'PostgreSQL', 'MongoDB', 'Oracle Database'],
-      note: 'MongoDB e Oracle Database: conhecimentos registrados no currículo.',
+      titlePt: 'Dados',
+      titleEn: 'Data',
+      skills: ['SQL', 'PostgreSQL', 'MySQL', 'DB2', 'MongoDB', 'Oracle Database'],
+      notePt: 'MongoDB e Oracle Database: conhecimentos registrados no currículo.',
+      noteEn: 'MongoDB and Oracle Database: working knowledge listed in the resume.',
     },
-    { index: '04', title: 'Infraestrutura & IA', skills: ['SUSE Linux', 'Google Cloud', 'OAuth', 'Integrações com IA', 'RAG'] },
+    {
+      index: '04',
+      titlePt: 'Infraestrutura & IA',
+      titleEn: 'Infrastructure & AI',
+      skills: ['SUSE Linux', 'Azure', 'Google Cloud', 'Git', 'RAG'],
+      notePt: 'Integrações com inteligência artificial e desenvolvimento assistido por agentes.',
+      noteEn: 'AI integrations and agent-assisted software development.',
+    },
   ];
 }
