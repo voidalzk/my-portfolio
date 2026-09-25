@@ -56,6 +56,8 @@ describe('AppComponent', () => {
     expect(projects.length).toBe(3);
     expect(projects[0].textContent).toContain('Appunture');
     expect(projects[1].textContent).toContain('FlyHigh');
+    expect(projects[1].textContent).toContain('Docker Compose');
+    expect(projects[1].textContent).toContain('saga de reserva');
     expect(projects[2].textContent).toContain('MaintenanceApp');
 
     projects[1].querySelectorAll<HTMLButtonElement>('.gallery-tabs button')[1].click();

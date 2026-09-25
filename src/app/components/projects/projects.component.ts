@@ -60,17 +60,21 @@ export class ProjectsComponent {
     {
       id: 'flyhigh', number: '02', name: 'FlyHigh',
       categoryPt: 'DAC · sistema de companhia aérea', categoryEn: 'Distributed applications · airline system',
-      descriptionPt: 'Sistema acadêmico de companhia aérea com jornadas de busca, compra e reserva de voos, milhas e operação de funcionários.',
-      descriptionEn: 'Academic airline system covering flight search and booking, miles and employee operations.',
+      descriptionPt: 'Sistema acadêmico de companhia aérea que reúne busca e reserva de voos, milhas e operação de funcionários em uma arquitetura distribuída.',
+      descriptionEn: 'Academic airline system bringing together flight search and booking, miles and employee operations in a distributed architecture.',
       highlightsPt: [
-        'Frontend em React conectado a um API Gateway e microsserviços em Spring Boot.',
-        'Fluxo de reservas orquestrado por saga; mensageria com RabbitMQ e dados em PostgreSQL e MongoDB.',
+        'O frontend em React acessa um API Gateway em Node.js/Express. No backend, microsserviços Spring Boot separam autenticação, clientes, funcionários, voos, reservas e orquestração.',
+        'RabbitMQ faz a comunicação por mensagens entre serviços; PostgreSQL e MongoDB armazenam dados de diferentes partes do sistema.',
+        'A saga de reserva coordena consulta de milhas, assentos, criação da reserva e débito. Se uma etapa falha, aciona compensações para devolver assentos e, quando necessário, desfazer a reserva.',
+        'Docker Compose reúne gateway, microsserviços, RabbitMQ e bancos de dados para executar o ambiente integrado.',
       ],
       highlightsEn: [
-        'React frontend connected to an API Gateway and Spring Boot microservices.',
-        'Booking flow orchestrated by a saga; RabbitMQ messaging with PostgreSQL and MongoDB.',
+        'The React frontend calls a Node.js/Express API Gateway. Spring Boot microservices separate authentication, customers, employees, flights, reservations and orchestration.',
+        'RabbitMQ carries messages between services; PostgreSQL and MongoDB store data for different parts of the system.',
+        'The booking saga coordinates miles checks, seat allocation, reservation creation and miles debit. If a step fails, compensating actions return seats and, when needed, undo the reservation.',
+        'Docker Compose brings up the gateway, microservices, RabbitMQ and databases as one integrated environment.',
       ],
-      stack: ['React', 'Spring Boot', 'Node.js', 'RabbitMQ', 'PostgreSQL', 'MongoDB'],
+      stack: ['React', 'Spring Boot', 'Node.js', 'RabbitMQ', 'PostgreSQL', 'MongoDB', 'Docker Compose'],
       images: [
         { src: 'assets/projects/flyhigh/checkout.png', altPt: 'Checkout de reserva de voo com opção de usar milhas no FlyHigh', altEn: 'FlyHigh flight checkout with a miles payment option', captionPt: 'Reserva e milhas', captionEn: 'Booking and miles' },
         { src: 'assets/projects/flyhigh/landing.png', altPt: 'Página inicial azul do sistema FlyHigh', altEn: 'Blue FlyHigh landing page', captionPt: 'Página inicial', captionEn: 'Landing page' },

@@ -1,13 +1,5 @@
 .projects { background: var(--signal-soft); }
 
-.projects-intro {
-  display: grid;
-  grid-template-columns: 1fr minmax(250px, 0.55fr);
-  align-items: end;
-  gap: 2rem;
-}
-
-.projects-intro p { max-width: 25rem; margin: 0; color: var(--ink-soft); }
 .project-list { display: grid; gap: clamp(3rem, 7vw, 6rem); margin-top: clamp(3rem, 7vw, 5.5rem); }
 
 .case-study {
@@ -147,7 +139,6 @@
 }
 
 @media (max-width: 600px) {
-  .projects-intro { grid-template-columns: 1fr; gap: 1rem; }
   .case-topline { flex-direction: column; gap: 0.25rem; }
   .case-copy h3 { font-size: clamp(2.7rem, 12vw, 4rem); }
   .case-study:last-child .case-copy h3 { font-size: clamp(2.2rem, 9vw, 3.5rem); }

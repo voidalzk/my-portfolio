@@ -1,9 +1,6 @@
 <section id="projetos" class="projects section" aria-labelledby="projects-title">
   <div class="container">
-    <div class="projects-intro">
-      <h2 id="projects-title" class="section-heading">05 — {{ language.isEnglish() ? 'Selected projects' : 'Projetos selecionados' }}</h2>
-      <p>{{ language.isEnglish() ? 'Three academic projects across mobile, distributed systems and web applications.' : 'Três projetos acadêmicos entre mobile, sistemas distribuídos e aplicações web.' }}</p>
-    </div>
+    <h2 id="projects-title" class="section-heading">05 — {{ language.isEnglish() ? 'Projects' : 'Projetos' }}</h2>
 
     <div class="project-list">
       @for (project of projects; track project.id) {
