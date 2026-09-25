@@ -1,64 +1,70 @@
-<section id="appunture" class="project section" aria-labelledby="project-title">
+<section id="projetos" class="projects section" aria-labelledby="projects-title">
   <div class="container">
-    <div class="project-heading">
-      <div>
-        <p class="section-heading">05 — {{ language.isEnglish() ? 'Featured academic project' : 'Projeto acadêmico em destaque' }}</p>
-        <h2 id="project-title" class="project-name">Appunture<span>.</span></h2>
-      </div>
-      <div class="project-meta">
-        <span>{{ language.isEnglish() ? 'Final degree project' : 'TCC' }} · 2025</span>
-        <span>Mobile + API + Cloud</span>
-      </div>
+    <div class="projects-intro">
+      <h2 id="projects-title" class="section-heading">05 — {{ language.isEnglish() ? 'Selected projects' : 'Projetos selecionados' }}</h2>
+      <p>{{ language.isEnglish() ? 'Three academic projects across mobile, distributed systems and web applications.' : 'Três projetos acadêmicos entre mobile, sistemas distribuídos e aplicações web.' }}</p>
     </div>
 
-    <div class="project-layout">
-      <div class="project-story">
-        <p class="project-lead">
-          {{ language.isEnglish()
-            ? 'An application that helps acupuncture practitioners look up and identify points on the body.'
-            : 'Aplicativo para auxiliar profissionais de acupuntura na consulta e identificação de pontos corporais.' }}
-        </p>
+    <div class="project-list">
+      @for (project of projects; track project.id) {
+        <article class="case-study" [attr.aria-labelledby]="'project-' + project.id">
+          <div class="case-topline">
+            <span class="case-number">{{ project.number }} / 03</span>
+            <span>{{ language.isEnglish() ? project.categoryEn : project.categoryPt }}</span>
+          </div>
 
-        <div class="project-details">
-          <article>
-            <span>01 / {{ language.isEnglish() ? 'Interface' : 'Interface' }}</span>
-            <h3>{{ language.isEnglish() ? 'Visual lookup' : 'Consulta visual' }}</h3>
-            <p>{{ language.isEnglish() ? 'A 3D body map to support point identification and lookup.' : 'Mapa corporal 3D para apoiar a identificação e consulta de pontos.' }}</p>
-          </article>
-          <article>
-            <span>02 / {{ language.isEnglish() ? 'Intelligence' : 'Inteligência' }}</span>
-            <h3>{{ language.isEnglish() ? 'AI support' : 'Apoio com IA' }}</h3>
-            <p>{{ language.isEnglish() ? 'AI integration to support use of the application.' : 'Integração com inteligência artificial para apoiar o uso do aplicativo.' }}</p>
-          </article>
-          <article>
-            <span>03 / {{ language.isEnglish() ? 'Platform' : 'Plataforma' }}</span>
-            <h3>{{ language.isEnglish() ? 'Cloud and offline use' : 'Cloud e uso offline' }}</h3>
-            <p>{{ language.isEnglish() ? 'Google Cloud infrastructure, OAuth authentication and an offline-first approach for limited connectivity.' : 'Infraestrutura no Google Cloud, autenticação com OAuth e estratégia offline-first para conectividade limitada.' }}</p>
-          </article>
-        </div>
+          <div class="case-grid">
+            <div class="case-copy">
+              <h3 [id]="'project-' + project.id">{{ project.name }}<span aria-hidden="true">.</span></h3>
+              <p class="case-description">{{ language.isEnglish() ? project.descriptionEn : project.descriptionPt }}</p>
 
-        <div class="project-stack" [attr.aria-label]="language.isEnglish() ? 'Appunture technologies' : 'Tecnologias do Appunture'">
-          <span>React Native</span>
-          <span>Spring Boot</span>
-          <span>Google Cloud</span>
-          <span>OAuth</span>
-          <span>{{ language.isEnglish() ? 'Artificial intelligence' : 'Inteligência artificial' }}</span>
-          <span>Offline-first</span>
-        </div>
-      </div>
+              <ul class="case-highlights">
+                @for (highlight of (language.isEnglish() ? project.highlightsEn : project.highlightsPt); track $index) {
+                  <li>{{ highlight }}</li>
+                }
+              </ul>
 
-      <div class="project-visual" [attr.aria-label]="language.isEnglish() ? 'Appunture architecture diagram' : 'Representação da arquitetura do Appunture'">
-        <div class="orbit orbit-one"></div>
-        <div class="orbit orbit-two"></div>
-        <div class="core">
-          <span>APP</span>
-          <strong>Appunture</strong>
-        </div>
-        <div class="node node-mobile"><small>{{ language.isEnglish() ? 'Interface' : 'Interface' }}</small><strong>React Native</strong></div>
-        <div class="node node-api"><small>API</small><strong>Spring Boot</strong></div>
-        <div class="node node-cloud"><small>{{ language.isEnglish() ? 'Cloud' : 'Infra' }}</small><strong>Google Cloud</strong></div>
-        <div class="node node-ai"><small>{{ language.isEnglish() ? 'Feature' : 'Recurso' }}</small><strong>{{ language.isEnglish() ? 'AI' : 'IA' }}</strong></div>
-      </div>
+              <div class="case-stack" [attr.aria-label]="language.isEnglish() ? 'Technologies' : 'Tecnologias'">
+                @for (technology of project.stack; track technology) {
+                  <span>{{ technology }}</span>
+                }
+              </div>
+
+              <div class="case-links">
+                @for (link of project.links ?? []; track link.url) {
+                  <a [href]="link.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="language.isEnglish() ? 'View ' + project.name + ' ' + link.label + ' on GitHub' : 'Ver ' + project.name + ' ' + link.label + ' no GitHub'">
+                    {{ link.label }} <span aria-hidden="true">↗</span>
+                  </a>
+                }
+                @if (project.privateRepository) {
+                  <span class="private-note">{{ language.isEnglish() ? 'Source repository is private' : 'Repositório privado' }}</span>
+                }
+              </div>
+            </div>
+
+            <div class="case-gallery">
+              <div class="gallery-stage" [class.gallery-stage--portrait]="activeImage(project).portrait">
+                <div class="gallery-chrome" aria-hidden="true"><i></i><i></i><i></i><span>{{ project.name.toLowerCase() }} / {{ activeIndex(project) + 1 }}—0{{ project.images.length }}</span></div>
+                <img [src]="activeImage(project).src"
+                  [alt]="language.isEnglish() ? activeImage(project).altEn : activeImage(project).altPt"
+                  loading="lazy" decoding="async" />
+              </div>
+              <div class="gallery-footer">
+                <p aria-live="polite">{{ language.isEnglish() ? activeImage(project).captionEn : activeImage(project).captionPt }}</p>
+                <a class="gallery-open" [href]="activeImage(project).src" target="_blank" rel="noopener noreferrer" [attr.aria-label]="language.isEnglish() ? 'Open full-size image: ' + activeImage(project).captionEn : 'Abrir imagem completa: ' + activeImage(project).captionPt">{{ language.isEnglish() ? 'Full image' : 'Ampliar' }} ↗</a>
+                <div class="gallery-tabs" [attr.aria-label]="language.isEnglish() ? project.name + ' screenshots' : 'Telas do ' + project.name">
+                  @for (shot of project.images; track shot.src; let index = $index) {
+                    <button type="button" [class.active]="activeIndex(project) === index"
+                      [attr.aria-pressed]="activeIndex(project) === index"
+                      [attr.aria-label]="language.isEnglish() ? 'Show ' + shot.captionEn : 'Mostrar ' + shot.captionPt"
+                      (click)="selectImage(project, index)">0{{ index + 1 }}</button>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      }
     </div>
   </div>
 </section>

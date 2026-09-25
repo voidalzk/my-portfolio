@@ -46,4 +46,23 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     expect(document.documentElement.lang).toBe('pt-BR');
   });
+
+  it('shows three projects and switches their screenshots', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const projects = compiled.querySelectorAll<HTMLElement>('.case-study');
+
+    expect(projects.length).toBe(3);
+    expect(projects[0].textContent).toContain('Appunture');
+    expect(projects[1].textContent).toContain('FlyHigh');
+    expect(projects[2].textContent).toContain('MaintenanceApp');
+
+    projects[1].querySelectorAll<HTMLButtonElement>('.gallery-tabs button')[1].click();
+    fixture.detectChanges();
+    expect(projects[1].querySelector<HTMLImageElement>('.gallery-stage img')?.getAttribute('src'))
+      .toBe('assets/projects/flyhigh/landing.png');
+    expect(projects[1].querySelector<HTMLButtonElement>('.gallery-tabs button.active')?.getAttribute('aria-pressed'))
+      .toBe('true');
+  });
 });
