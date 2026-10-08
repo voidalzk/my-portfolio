@@ -23,7 +23,6 @@ interface PortfolioProject {
   stack: string[];
   images: ProjectImage[];
   links?: { label: string; url: string }[];
-  privateRepository?: boolean;
 }
 
 @Component({
@@ -43,19 +42,21 @@ export class ProjectsComponent {
       descriptionEn: 'A mobile reference for acupuncture points, with a 3D body map, point search and an AI assistant.',
       highlightsPt: [
         'Consulta por nome, código ou meridiano e acesso a indicações e localização anatômica.',
-        'Dados locais com sincronização controlada, autenticação Firebase e API em Spring Boot.',
+        'Arquitetura offline-first com dados locais e sincronização controlada, autenticação Firebase e API em Spring Boot.',
+        'Assistente de IA integrado ao Gemini via Spring AI e Vertex AI; backend preparado para deploy no Google Cloud Run.',
       ],
       highlightsEn: [
         'Search by name, code or meridian, with indications and anatomical location.',
-        'Local data with controlled synchronization, Firebase authentication and a Spring Boot API.',
+        'Offline-first architecture with local data and controlled synchronization, Firebase authentication and a Spring Boot API.',
+        'AI assistant integrated with Gemini through Spring AI and Vertex AI; backend configured for deployment on Google Cloud Run.',
       ],
-      stack: ['React Native', 'Expo', 'Spring Boot', 'Firebase', 'Google Cloud'],
+      stack: ['React Native', 'Expo', 'Spring Boot', 'Spring AI', 'Gemini', 'Firebase', 'Google Cloud'],
       images: [
         { src: 'assets/projects/appunture/body-map.jpeg', altPt: 'Mapa corporal 3D do Appunture com pontos de acupuntura', altEn: 'Appunture 3D body map with acupuncture points', captionPt: 'Mapa corporal 3D', captionEn: '3D body map', portrait: true },
         { src: 'assets/projects/appunture/home.jpeg', altPt: 'Tela inicial do aplicativo Appunture', altEn: 'Appunture home screen', captionPt: 'Tela inicial', captionEn: 'Home screen', portrait: true },
         { src: 'assets/projects/appunture/search.jpeg', altPt: 'Busca de pontos de acupuntura no Appunture', altEn: 'Acupuncture point search in Appunture', captionPt: 'Busca de pontos', captionEn: 'Point search', portrait: true },
       ],
-      privateRepository: true,
+      links: [{ label: 'GitHub', url: 'https://github.com/Appunture-2025/appunture-dev' }],
     },
     {
       id: 'flyhigh', number: '02', name: 'FlyHigh',

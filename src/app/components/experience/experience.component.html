@@ -19,11 +19,26 @@
                 <p class="context">{{ language.isEnglish() ? experience.contextEn : experience.contextPt }}</p>
               }
             </div>
-            <ul>
-              @for (detail of (language.isEnglish() ? experience.detailsEn : experience.detailsPt); track $index) {
-                <li>{{ detail }}</li>
-              }
-            </ul>
+            @if (experience.areas; as areas) {
+              <div class="experience-areas">
+                @for (area of areas; track area.titlePt) {
+                  <div class="experience-area">
+                    <h4>{{ language.isEnglish() ? area.titleEn : area.titlePt }}</h4>
+                    <ul>
+                      @for (detail of (language.isEnglish() ? area.detailsEn : area.detailsPt); track $index) {
+                        <li>{{ detail }}</li>
+                      }
+                    </ul>
+                  </div>
+                }
+              </div>
+            } @else {
+              <ul>
+                @for (detail of ((language.isEnglish() ? experience.detailsEn : experience.detailsPt) ?? []); track $index) {
+                  <li>{{ detail }}</li>
+                }
+              </ul>
+            }
             <div class="tags" [attr.aria-label]="language.isEnglish() ? 'Related technologies and areas' : 'Tecnologias e áreas relacionadas'">
               @for (technology of experience.stack; track technology) {
                 <span>{{ technology }}</span>

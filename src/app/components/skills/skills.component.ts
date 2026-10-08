@@ -18,12 +18,12 @@ interface SkillGroup {
       <div class="container">
         <div class="skills-heading">
           <div>
-            <h2 id="skills-title" class="section-heading">04 — {{ language.isEnglish() ? 'Technical skills' : 'Competências técnicas' }}</h2>
+            <h2 id="skills-title" class="section-heading">05 — {{ language.isEnglish() ? 'Technical skills' : 'Competências técnicas' }}</h2>
           </div>
           <p class="section-lead">
             {{ language.isEnglish()
-              ? 'Technologies used in professional experience, education and projects.'
-              : 'Tecnologias utilizadas em experiências profissionais, formação acadêmica e projetos.' }}
+              ? 'Web and mobile development, system integration, AI, data and infrastructure.'
+              : 'Desenvolvimento web e mobile, integração de sistemas, IA, dados e infraestrutura.' }}
           </p>
         </div>
 
@@ -48,7 +48,11 @@ interface SkillGroup {
 
         <div class="workflow-note">
           <span class="workflow-label">{{ language.isEnglish() ? 'Ways of working' : 'Modo de trabalho' }}</span>
-          <p>Kanban · Scrum · Git/GitHub/GitLab · {{ language.isEnglish() ? 'AI-assisted coding with Claude, Codex and GitHub Copilot' : 'programação assistida por Claude, Codex e GitHub Copilot' }}</p>
+          <div>
+            <p>Git · GitHub · GitLab · Kanban · Scrum</p>
+            <p>{{ language.isEnglish() ? 'Proactivity, adaptability, continuous learning and collaboration in problem solving.' : 'Proatividade, adaptabilidade, aprendizado contínuo e colaboração na resolução de problemas.' }}</p>
+            <p>{{ language.isEnglish() ? 'AI-assisted development with Claude, Codex and GitHub Copilot.' : 'Desenvolvimento assistido por IA com Claude, Codex e GitHub Copilot.' }}</p>
+          </div>
         </div>
       </div>
     </section>
@@ -138,6 +142,7 @@ interface SkillGroup {
     }
 
     .workflow-note p { margin: 0; color: var(--ink-soft); }
+    .workflow-note p + p { margin-top: 0.65rem; font-size: 0.88rem; }
 
     @media (max-width: 760px) {
       .skills-heading, .skill-groups { grid-template-columns: 1fr; }
@@ -150,22 +155,43 @@ export class SkillsComponent {
   readonly language = inject(LanguageService);
   readonly groups: SkillGroup[] = [
     { index: '01', titlePt: 'Linguagens', titleEn: 'Languages', skills: ['JavaScript', 'TypeScript', 'PHP', 'Python', 'Java'] },
-    { index: '02', titlePt: 'Frameworks & aplicações', titleEn: 'Frameworks & applications', skills: ['React', 'Node.js', 'Vue.js', 'React Native', 'Angular', 'Spring Boot'] },
+    {
+      index: '02', titlePt: 'Frontend & mobile', titleEn: 'Frontend & mobile',
+      skills: ['React', 'Vue.js', 'Angular', 'React Native', 'Expo'],
+      notePt: 'Interfaces web em experiências profissionais e projetos; desenvolvimento mobile no TCC Appunture.',
+      noteEn: 'Web interfaces in professional work and projects; mobile development in the Appunture degree project.',
+    },
     {
       index: '03',
-      titlePt: 'Dados',
-      titleEn: 'Data',
-      skills: ['SQL', 'PostgreSQL', 'MySQL', 'DB2', 'MongoDB', 'Oracle Database'],
-      notePt: 'MongoDB e Oracle Database: conhecimentos registrados no currículo.',
-      noteEn: 'MongoDB and Oracle Database: working knowledge listed in the resume.',
+      titlePt: 'Backend & integrações',
+      titleEn: 'Backend & integrations',
+      skills: ['Node.js', 'Spring Boot', 'REST APIs', 'Microservices', 'RabbitMQ', 'Sagas'],
+      notePt: 'APIs e integrações corporativas no Banco do Brasil; microsserviços, mensageria e sagas no projeto FlyHigh.',
+      noteEn: 'Enterprise APIs and integrations at Banco do Brasil; microservices, messaging and sagas in the FlyHigh project.',
     },
     {
       index: '04',
-      titlePt: 'Infraestrutura & IA',
-      titleEn: 'Infrastructure & AI',
-      skills: ['SUSE Linux', 'Azure', 'Google Cloud', 'Git', 'RAG'],
-      notePt: 'Integrações com inteligência artificial e desenvolvimento assistido por agentes.',
-      noteEn: 'AI integrations and agent-assisted software development.',
+      titlePt: 'Dados & analytics',
+      titleEn: 'Data & analytics',
+      skills: ['SQL', 'PostgreSQL', 'MySQL', 'DB2', 'ETL / ELT', 'Power BI', 'Google Sheets'],
+      notePt: 'Consultas, modelos de dados, automação e visualização. Conhecimentos também em MongoDB e Oracle Database.',
+      noteEn: 'Queries, data models, automation and visualization. Additional knowledge of MongoDB and Oracle Database.',
+    },
+    {
+      index: '05',
+      titlePt: 'Infraestrutura & cloud',
+      titleEn: 'Infrastructure & cloud',
+      skills: ['SUSE Linux', 'Docker', 'Docker Compose', 'Kubernetes', 'Azure', 'Google Cloud', 'Firebase'],
+      notePt: 'Sustentação de servidores Linux no Banco do Brasil e uso de containers e serviços cloud em projetos.',
+      noteEn: 'Linux server support at Banco do Brasil, with containers and cloud services used in projects.',
+    },
+    {
+      index: '06',
+      titlePt: 'Inteligência artificial',
+      titleEn: 'Artificial intelligence',
+      skills: ['LLMs', 'RAG', 'Spring AI', 'Vertex AI', 'Gemini'],
+      notePt: 'Integrações com LLMs e participação em soluções RAG no Banco do Brasil; assistente de IA no Appunture.',
+      noteEn: 'LLM integrations and contributions to RAG solutions at Banco do Brasil; an AI assistant in Appunture.',
     },
   ];
 }

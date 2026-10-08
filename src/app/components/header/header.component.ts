@@ -46,8 +46,8 @@ import { LanguageService } from '../../services/language.service';
         <ul id="menu-principal" class="nav-links" [class.open]="isMenuOpen">
           <li><a href="#sobre" (click)="closeMenu()">{{ language.isEnglish() ? 'About' : 'Sobre' }}</a></li>
           <li><a href="#experiencia" (click)="closeMenu()">{{ language.isEnglish() ? 'Experience' : 'Experiência' }}</a></li>
-          <li><a href="#competencias" (click)="closeMenu()">{{ language.isEnglish() ? 'Skills' : 'Competências' }}</a></li>
           <li><a href="#projetos" (click)="closeMenu()">{{ language.isEnglish() ? 'Projects' : 'Projetos' }}</a></li>
+          <li><a href="#competencias" (click)="closeMenu()">{{ language.isEnglish() ? 'Skills' : 'Competências' }}</a></li>
           <li><a href="#contato" (click)="closeMenu()">{{ language.isEnglish() ? 'Contact' : 'Contato' }}</a></li>
           <li>
             <a class="resume-link" [href]="language.resumeUrl()" [attr.download]="language.isEnglish() ? 'Gabriel_Voidaleski_CV_EN.pdf' : 'Gabriel_Voidaleski_CV_PT.pdf'" (click)="closeMenu()">

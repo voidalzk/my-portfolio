@@ -16,6 +16,12 @@ import { LanguageService } from '../../services/language.service';
             <p class="date">{{ language.isEnglish() ? 'Completed Aug 2026' : 'Concluído em 08/2026' }}</p>
             <h3>{{ language.isEnglish() ? 'Technology Degree in Systems Analysis and Development' : 'Tecnologia em Análise e Desenvolvimento de Sistemas' }}</h3>
             <p class="institution">{{ language.isEnglish() ? 'Federal University of Paraná — UFPR' : 'Universidade Federal do Paraná — UFPR' }}</p>
+            <p class="degree-project">
+              <a href="#project-appunture">{{ language.isEnglish() ? 'Degree project — Appunture' : 'TCC — Appunture' }} <span aria-hidden="true">↗</span></a>
+              {{ language.isEnglish()
+                ? 'Mobile app for acupuncture point lookup, with a 3D body map and an AI assistant. Built with React Native, Spring Boot and Google Cloud, with local data and controlled synchronization.'
+                : 'Aplicativo para consulta de pontos de acupuntura, com mapa corporal 3D e assistente de IA. Desenvolvido com React Native, Spring Boot e Google Cloud, com dados locais e sincronização controlada.' }}
+            </p>
           </article>
           <article>
             <p class="date">{{ language.isEnglish() ? 'Completed 2022' : 'Concluído em 2022' }}</p>
@@ -65,6 +71,8 @@ import { LanguageService } from '../../services/language.service';
     }
 
     .institution { margin: 0.75rem 0 0; color: var(--ink-soft); }
+    .degree-project { margin: 1.25rem 0 0; color: var(--ink-soft); font-size: 0.9rem; }
+    .degree-project a { display: block; width: fit-content; margin-bottom: 0.4rem; color: var(--signal-deep); font-weight: 700; text-underline-offset: 0.2rem; }
 
     @media (max-width: 760px) {
       .education-layout { grid-template-columns: 1fr; }

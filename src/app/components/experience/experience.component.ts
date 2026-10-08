@@ -1,6 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 
+interface ExperienceArea {
+  titlePt: string;
+  titleEn: string;
+  detailsPt: string[];
+  detailsEn: string[];
+}
+
 interface Experience {
   periodPt: string;
   periodEn: string;
@@ -10,8 +17,9 @@ interface Experience {
   roleEn: string;
   contextPt?: string;
   contextEn?: string;
-  detailsPt: string[];
-  detailsEn: string[];
+  detailsPt?: string[];
+  detailsEn?: string[];
+  areas?: ExperienceArea[];
   stack: string[];
 }
 
@@ -34,21 +42,59 @@ export class ExperienceComponent {
       roleEn: 'Full Stack Developer Intern',
       contextPt: 'Equipe de Automação e Analytics',
       contextEn: 'Automation and Analytics Team',
-      detailsPt: [
-        'Desenvolvimento e manutenção de APIs e backends com Node.js para aplicações corporativas internas.',
-        'Desenvolvimento full stack com Node.js, Vue.js e PHP, uso pontual de React e integração entre frontend, serviços e fontes de dados.',
-        'Manutenção evolutiva e corretiva de aplicações e desenvolvimento de consultas SQL e modelos de dados em PostgreSQL, MySQL e DB2.',
-        'Desenvolvimento de integrações com IA e participação em arquiteturas RAG.',
-        'Sustentação de servidores SUSE Linux e ambientes de aplicação; rotinas em Python para automação e integração entre sistemas.',
+      areas: [
+        {
+          titlePt: 'Desenvolvimento full stack',
+          titleEn: 'Full stack development',
+          detailsPt: [
+            'Desenvolvimento e sustentação de aplicações corporativas com Node.js, Vue.js e PHP, implementando funcionalidades e realizando manutenção evolutiva e corretiva.',
+            'Criação e manutenção de APIs e backends em Node.js para integrar interfaces web, serviços internos, sistemas corporativos, bancos de dados e diferentes fontes de informação.',
+          ],
+          detailsEn: [
+            'Developed and maintained enterprise applications with Node.js, Vue.js and PHP, implementing features, enhancing existing systems and fixing issues.',
+            'Built and maintained Node.js APIs and backends to connect web interfaces, internal services, enterprise systems, databases and multiple information sources.',
+          ],
+        },
+        {
+          titlePt: 'Inteligência artificial',
+          titleEn: 'Artificial intelligence',
+          detailsPt: [
+            'Desenvolvimento de APIs intermediárias e fluxos de integração com LLMs e serviços de IA, estruturando rotas, tratamento de requisições e respostas e comunicação com aplicações consumidoras.',
+            'Participação em soluções RAG (Retrieval-Augmented Generation), com consulta, recuperação e preparação de informações para gerar respostas contextualizadas a partir de fontes corporativas.',
+          ],
+          detailsEn: [
+            'Developed intermediary APIs and integration workflows for LLMs and AI services, handling routes, requests, responses and communication with consuming applications.',
+            'Contributed to RAG (Retrieval-Augmented Generation) solutions, querying, retrieving and preparing information to generate responses grounded in enterprise sources.',
+          ],
+        },
+        {
+          titlePt: 'Dados e analytics',
+          titleEn: 'Data and analytics',
+          detailsPt: [
+            'Desenvolvimento de consultas SQL e modelos de dados em PostgreSQL, MySQL e DB2, com tratamento, validação e integração de informações em processos ETL e ELT.',
+            'Criação de rotinas e automações em Python para processamento de dados, execução de tarefas recorrentes e integração entre sistemas.',
+            'Utilização de Power BI em atividades de análise e visualização de dados na equipe de Automação e Analytics.',
+          ],
+          detailsEn: [
+            'Developed SQL queries and data models in PostgreSQL, MySQL and DB2, processing, validating and integrating information through ETL and ELT workflows.',
+            'Built Python routines and automations for data processing, recurring tasks and system integration.',
+            'Used Power BI for data analysis and visualization within the Automation and Analytics team.',
+          ],
+        },
+        {
+          titlePt: 'Sustentação e infraestrutura',
+          titleEn: 'Application support and infrastructure',
+          detailsPt: [
+            'Administração e sustentação de servidores SUSE Linux, ambientes de aplicação e serviços internos, apoiando a disponibilidade das soluções da equipe.',
+            'Análise, diagnóstico e resolução de problemas em aplicações, APIs, bases de dados, servidores, integrações e processos automatizados.',
+          ],
+          detailsEn: [
+            'Administered and supported SUSE Linux servers, application environments and internal services, supporting the availability of team solutions.',
+            'Investigated, diagnosed and resolved issues across applications, APIs, databases, servers, integrations and automated processes.',
+          ],
+        },
       ],
-      detailsEn: [
-        'Developed and maintained APIs and Node.js backends for internal enterprise applications.',
-        'Built full stack applications with Node.js, Vue.js and PHP, with occasional React work and integration across frontends, services and data sources.',
-        'Enhanced and fixed applications and developed SQL queries and data models in PostgreSQL, MySQL and DB2.',
-        'Developed AI integrations and contributed to RAG architectures.',
-        'Supported SUSE Linux servers and application environments; built Python routines for automation and system integration.',
-      ],
-      stack: ['Node.js', 'Vue.js', 'PHP', 'React', 'SQL', 'PostgreSQL', 'MySQL', 'DB2', 'SUSE Linux', 'AI / RAG'],
+      stack: ['Node.js', 'Vue.js', 'PHP', 'LLMs', 'RAG', 'SQL', 'PostgreSQL', 'MySQL', 'DB2', 'ETL / ELT', 'Python', 'Power BI', 'SUSE Linux'],
     },
     {
       periodPt: '07/2026 — atual',

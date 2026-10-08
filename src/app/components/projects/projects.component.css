@@ -81,7 +81,6 @@
 .case-links { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: auto; padding-top: 2.5rem; }
 .case-links a { padding-bottom: 0.2rem; border-bottom: 1px solid currentColor; color: var(--signal-deep); font-size: 0.86rem; font-weight: 800; text-decoration: none; }
 .case-links a:hover { color: var(--ink); }
-.private-note { color: var(--ink-soft); font-family: var(--mono); font-size: 0.7rem; }
 
 .case-gallery {
   display: flex;

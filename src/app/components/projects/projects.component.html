@@ -1,6 +1,6 @@
 <section id="projetos" class="projects section" aria-labelledby="projects-title">
   <div class="container">
-    <h2 id="projects-title" class="section-heading">05 — {{ language.isEnglish() ? 'Projects' : 'Projetos' }}</h2>
+    <h2 id="projects-title" class="section-heading">04 — {{ language.isEnglish() ? 'Projects' : 'Projetos' }}</h2>
 
     <div class="project-list">
       @for (project of projects; track project.id) {
@@ -32,9 +32,6 @@
                   <a [href]="link.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="language.isEnglish() ? 'View ' + project.name + ' ' + link.label + ' on GitHub' : 'Ver ' + project.name + ' ' + link.label + ' no GitHub'">
                     {{ link.label }} <span aria-hidden="true">↗</span>
                   </a>
-                }
-                @if (project.privateRepository) {
-                  <span class="private-note">{{ language.isEnglish() ? 'Source repository is private' : 'Repositório privado' }}</span>
                 }
               </div>
             </div>
