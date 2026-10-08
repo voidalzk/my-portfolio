@@ -189,9 +189,9 @@ export class SkillsComponent {
       index: '06',
       titlePt: 'Inteligência artificial',
       titleEn: 'Artificial intelligence',
-      skills: ['LLMs', 'RAG', 'Spring AI', 'Vertex AI', 'Gemini'],
-      notePt: 'Integrações com LLMs e participação em soluções RAG no Banco do Brasil; assistente de IA no Appunture.',
-      noteEn: 'LLM integrations and contributions to RAG solutions at Banco do Brasil; an AI assistant in Appunture.',
+      skills: ['LLMs', 'RAG', 'Vector indexing', 'Spring AI', 'Vertex AI', 'Gemini'],
+      notePt: 'Integrações com LLMs, soluções RAG e indexação vetorial no Banco do Brasil; assistente de IA no Appunture.',
+      noteEn: 'LLM integrations, RAG solutions and vector indexing at Banco do Brasil; an AI assistant in Appunture.',
     },
   ];
 }

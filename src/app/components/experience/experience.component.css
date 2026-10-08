@@ -1,7 +1,5 @@
 .experience {
-  --ink: #102127;
-  --paper: #f4f0e8;
-  --signal: #ff8a5c;
+  --signal: var(--contrast-accent);
   background: var(--ink);
   color: var(--paper);
 }

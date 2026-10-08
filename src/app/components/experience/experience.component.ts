@@ -60,11 +60,11 @@ export class ExperienceComponent {
           titleEn: 'Artificial intelligence',
           detailsPt: [
             'Desenvolvimento de APIs intermediárias e fluxos de integração com LLMs e serviços de IA, estruturando rotas, tratamento de requisições e respostas e comunicação com aplicações consumidoras.',
-            'Participação em soluções RAG (Retrieval-Augmented Generation), com consulta, recuperação e preparação de informações para gerar respostas contextualizadas a partir de fontes corporativas.',
+            'Participação em soluções RAG (Retrieval-Augmented Generation) e indexação vetorial, com consulta, recuperação e preparação de informações para gerar respostas contextualizadas a partir de fontes corporativas.',
           ],
           detailsEn: [
             'Developed intermediary APIs and integration workflows for LLMs and AI services, handling routes, requests, responses and communication with consuming applications.',
-            'Contributed to RAG (Retrieval-Augmented Generation) solutions, querying, retrieving and preparing information to generate responses grounded in enterprise sources.',
+            'Contributed to RAG (Retrieval-Augmented Generation) solutions and vector indexing, querying, retrieving and preparing information to generate responses grounded in enterprise sources.',
           ],
         },
         {
@@ -73,12 +73,12 @@ export class ExperienceComponent {
           detailsPt: [
             'Desenvolvimento de consultas SQL e modelos de dados em PostgreSQL, MySQL e DB2, com tratamento, validação e integração de informações em processos ETL e ELT.',
             'Criação de rotinas e automações em Python para processamento de dados, execução de tarefas recorrentes e integração entre sistemas.',
-            'Utilização de Power BI em atividades de análise e visualização de dados na equipe de Automação e Analytics.',
+            'Utilização de Power BI em atividades de análise e visualização de dados.',
           ],
           detailsEn: [
             'Developed SQL queries and data models in PostgreSQL, MySQL and DB2, processing, validating and integrating information through ETL and ELT workflows.',
             'Built Python routines and automations for data processing, recurring tasks and system integration.',
-            'Used Power BI for data analysis and visualization within the Automation and Analytics team.',
+            'Used Power BI for data analysis and visualization.',
           ],
         },
         {

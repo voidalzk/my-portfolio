@@ -37,6 +37,7 @@ import { LanguageService } from '../../services/language.service';
   `,
   styles: [`
     .contact {
+      --signal: var(--contrast-accent);
       position: relative;
       overflow: hidden;
       background: var(--ink);
@@ -126,7 +127,7 @@ import { LanguageService } from '../../services/language.service';
       justify-content: space-between;
       gap: 2rem;
       padding-top: 1.5rem;
-      color: color-mix(in srgb, var(--paper) 52%, transparent);
+      color: color-mix(in srgb, var(--paper) 68%, transparent);
       font-family: var(--mono);
       font-size: 0.64rem;
       text-transform: uppercase;
