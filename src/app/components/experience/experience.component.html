@@ -1,49 +1,18 @@
 <section id="experiencia" class="experience section" aria-labelledby="experience-title">
   <div class="container">
-    <h2 id="experience-title" class="section-heading">03 — {{ language.isEnglish() ? 'Professional experience' : 'Experiência profissional' }}</h2>
-
-    <div class="timeline">
-      @for (experience of experiences; track experience.companyPt) {
+    <h2 id="experience-title" class="section-heading">{{ language.isEnglish() ? 'Professional experience' : 'Experiência profissional' }}</h2>
+    <div class="experience-list">
+      @for (experience of experiences; track experience.company) {
         <article class="experience-item">
           <div class="experience-meta">
+            <h3>{{ experience.company }}</h3>
+            <p class="role">{{ language.isEnglish() ? experience.roleEn : experience.rolePt }}</p>
             <p class="period">{{ language.isEnglish() ? experience.periodEn : experience.periodPt }}</p>
-            <span class="timeline-dot" aria-hidden="true"></span>
           </div>
-          <div class="experience-content">
-            <div class="experience-title">
-              <div>
-                <h3>{{ language.isEnglish() ? experience.companyEn : experience.companyPt }}</h3>
-                <p class="role">{{ language.isEnglish() ? experience.roleEn : experience.rolePt }}</p>
-              </div>
-              @if (experience.contextPt) {
-                <p class="context">{{ language.isEnglish() ? experience.contextEn : experience.contextPt }}</p>
-              }
-            </div>
-            @if (experience.areas; as areas) {
-              <div class="experience-areas">
-                @for (area of areas; track area.titlePt) {
-                  <div class="experience-area">
-                    <h4>{{ language.isEnglish() ? area.titleEn : area.titlePt }}</h4>
-                    <ul>
-                      @for (detail of (language.isEnglish() ? area.detailsEn : area.detailsPt); track $index) {
-                        <li>{{ detail }}</li>
-                      }
-                    </ul>
-                  </div>
-                }
-              </div>
-            } @else {
-              <ul>
-                @for (detail of ((language.isEnglish() ? experience.detailsEn : experience.detailsPt) ?? []); track $index) {
-                  <li>{{ detail }}</li>
-                }
-              </ul>
+          <div class="experience-copy">
+            @for (detail of (language.isEnglish() ? experience.detailsEn : experience.detailsPt); track $index) {
+              <p>{{ detail }}</p>
             }
-            <div class="tags" [attr.aria-label]="language.isEnglish() ? 'Related technologies and areas' : 'Tecnologias e áreas relacionadas'">
-              @for (technology of experience.stack; track technology) {
-                <span>{{ technology }}</span>
-              }
-            </div>
           </div>
         </article>
       }

@@ -6,138 +6,29 @@ import { LanguageService } from '../../services/language.service';
   standalone: true,
   template: `
     <section id="contato" class="contact section" aria-labelledby="contact-title">
-      <div class="contact-orbit" aria-hidden="true"></div>
-      <div class="container contact-content">
-        <h2 id="contact-title" class="section-heading">07 — {{ language.isEnglish() ? 'Contact' : 'Contato' }}</h2>
-        <p class="contact-lead">
-          {{ language.isEnglish()
-            ? 'Get in touch about software development opportunities and projects.'
-            : 'Contato profissional para oportunidades em desenvolvimento de software e projetos.' }}
-        </p>
-
-        <div class="contact-actions">
-          <a class="email" href="mailto:voidalzk@gmail.com">
-            <span>{{ language.isEnglish() ? 'Email me at' : 'Escreva para' }}</span>
-            voidalzk&#64;gmail.com <strong aria-hidden="true">↗</strong>
-          </a>
-          <div class="social-links" [attr.aria-label]="language.isEnglish() ? 'Professional links' : 'Links profissionais'">
-            <a href="https://www.linkedin.com/in/gabriel-voidaleski-40864a215/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-            <a href="https://github.com/voidalzk" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-            <a [href]="language.resumeUrl()" [attr.download]="language.isEnglish() ? 'Gabriel_Voidaleski_CV_EN.pdf' : 'Gabriel_Voidaleski_CV_PT.pdf'">{{ language.isEnglish() ? 'Resume (EN)' : 'Currículo (PT)' }} ↓</a>
-            <a [href]="language.isEnglish() ? 'assets/curriculum-gabriel-voidaleski-pt.pdf' : 'assets/curriculum-gabriel-voidaleski-en.pdf'" [attr.download]="language.isEnglish() ? 'Gabriel_Voidaleski_CV_PT.pdf' : 'Gabriel_Voidaleski_CV_EN.pdf'">{{ language.isEnglish() ? 'Resume (PT)' : 'Currículo (EN)' }} ↓</a>
-          </div>
+      <div class="container">
+        <div class="contact-row">
+          <h2 id="contact-title" class="section-heading">{{ language.isEnglish() ? 'Contact' : 'Contato' }}</h2>
+          <a class="email" href="mailto:voidalzk@gmail.com">voidalzk&#64;gmail.com ↗</a>
         </div>
-
-        <footer>
-          <span>Gabriel Voidaleski · Curitiba, PR</span>
-          <span>{{ language.isEnglish() ? 'Portfolio built with Angular' : 'Portfólio desenvolvido em Angular' }} · {{ year }}</span>
-        </footer>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/gabriel-voidaleski-40864a215/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          <a href="https://github.com/voidalzk" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="assets/curriculum-gabriel-voidaleski-pt.pdf" download="Gabriel_Voidaleski_CV_PT.pdf">{{ language.isEnglish() ? 'Resume' : 'Currículo' }} PT ↓</a>
+          <a href="assets/curriculum-gabriel-voidaleski-en.pdf" download="Gabriel_Voidaleski_CV_EN.pdf">{{ language.isEnglish() ? 'Resume' : 'Currículo' }} EN ↓</a>
+        </div>
+        <footer><span>Gabriel Voidaleski · Curitiba, PR</span><span>Angular · {{ year }}</span></footer>
       </div>
     </section>
   `,
   styles: [`
-    .contact {
-      --signal: var(--contrast-accent);
-      position: relative;
-      overflow: hidden;
-      background: var(--ink);
-      color: var(--paper);
-    }
-
-    .contact-orbit {
-      position: absolute;
-      top: -24rem;
-      right: -17rem;
-      width: 56rem;
-      height: 56rem;
-      border: 1px solid color-mix(in srgb, var(--paper) 14%, transparent);
-      border-radius: 50%;
-    }
-
-    .contact-orbit::before,
-    .contact-orbit::after {
-      position: absolute;
-      border: inherit;
-      border-radius: inherit;
-      content: '';
-    }
-
-    .contact-orbit::before { inset: 7rem; }
-    .contact-orbit::after { inset: 14rem; background: color-mix(in srgb, var(--signal) 18%, transparent); }
-
-    .contact-content { position: relative; z-index: 1; }
-    .section-heading { color: var(--signal); }
-
-    .contact-lead {
-      max-width: 620px;
-      margin: 2rem 0 0;
-      color: color-mix(in srgb, var(--paper) 72%, transparent);
-      font-size: clamp(1rem, 1.8vw, 1.22rem);
-    }
-
-    .contact-actions {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: end;
-      gap: 3rem;
-      margin-top: clamp(3rem, 5vw, 4.5rem);
-      padding-bottom: 3rem;
-      border-bottom: 1px solid color-mix(in srgb, var(--paper) 18%, transparent);
-    }
-
-    .email {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      gap: 0.5rem 1rem;
-      color: var(--paper);
-      font-family: var(--display);
-      font-size: clamp(1.65rem, 4vw, 3.4rem);
-      text-decoration: none;
-    }
-
-    .email span {
-      flex-basis: 100%;
-      color: var(--signal);
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      text-transform: uppercase;
-    }
-
-    .email strong { color: var(--signal); }
-
-    .social-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
-      text-align: right;
-    }
-
-    .social-links a {
-      color: color-mix(in srgb, var(--paper) 78%, transparent);
-      font-family: var(--mono);
-      font-size: 0.76rem;
-      text-decoration: none;
-    }
-
-    .social-links a:hover { color: var(--signal); }
-
-    footer {
-      display: flex;
-      justify-content: space-between;
-      gap: 2rem;
-      padding-top: 1.5rem;
-      color: color-mix(in srgb, var(--paper) 68%, transparent);
-      font-family: var(--mono);
-      font-size: 0.64rem;
-      text-transform: uppercase;
-    }
-
-    @media (max-width: 720px) {
-      .contact-actions { grid-template-columns: 1fr; gap: 2rem; }
-      .social-links { align-items: flex-start; text-align: left; }
-      footer { flex-direction: column; gap: 0.4rem; }
-    }
+    .contact { border-top: 1px solid var(--line); }
+    .contact-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem; }
+    .email { font-family: var(--display); font-size: clamp(1.3rem, 3vw, 2rem); letter-spacing: -.03em; text-decoration: none; overflow-wrap: anywhere; }
+    .social-links { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: .7rem 1.5rem; margin-top: 1.5rem; font-size: .8rem; }
+    .social-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink-soft); }
+    footer { display: flex; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--line); padding-top: 1.5rem; margin-top: 2.5rem; font-size: .7rem; color: var(--ink-soft); }
+    @media(max-width: 600px) { .contact-row { flex-direction: column; } .social-links { justify-content: flex-start; } footer { flex-wrap: wrap; } }
   `],
 })
 export class ContactComponent {

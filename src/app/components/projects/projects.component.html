@@ -1,60 +1,63 @@
 <section id="projetos" class="projects section" aria-labelledby="projects-title">
   <div class="container">
-    <h2 id="projects-title" class="section-heading">04 — {{ language.isEnglish() ? 'Projects' : 'Projetos' }}</h2>
-
+    <div class="projects-heading">
+      <h2 id="projects-title" class="section-heading">{{ language.isEnglish() ? 'Projects' : 'Projetos' }}</h2>
+      <span>{{ language.isEnglish() ? 'Code, implementation and architecture' : 'Código, implementação e arquitetura' }}</span>
+    </div>
+    <nav class="project-index" [attr.aria-label]="language.isEnglish() ? 'Project index' : 'Índice de projetos'">
+      @for (project of projects; track project.id) {
+        <a [href]="'#project-' + project.id">{{ project.name }}</a>
+      }
+    </nav>
     <div class="project-list">
       @for (project of projects; track project.id) {
         <article class="case-study" [attr.aria-labelledby]="'project-' + project.id">
-          <div class="case-topline">
-            <span class="case-number">{{ project.number }} / 03</span>
-            <span>{{ language.isEnglish() ? project.categoryEn : project.categoryPt }}</span>
-          </div>
-
-          <div class="case-grid">
-            <div class="case-copy">
-              <h3 [id]="'project-' + project.id">{{ project.name }}<span aria-hidden="true">.</span></h3>
-              <p class="case-description">{{ language.isEnglish() ? project.descriptionEn : project.descriptionPt }}</p>
-
-              <ul class="case-highlights">
-                @for (highlight of (language.isEnglish() ? project.highlightsEn : project.highlightsPt); track $index) {
-                  <li>{{ highlight }}</li>
-                }
-              </ul>
-
-              <div class="case-stack" [attr.aria-label]="language.isEnglish() ? 'Technologies' : 'Tecnologias'">
-                @for (technology of project.stack; track technology) {
-                  <span>{{ technology }}</span>
-                }
-              </div>
-
-              <div class="case-links">
-                @for (link of project.links ?? []; track link.url) {
-                  <a [href]="link.url" target="_blank" rel="noopener noreferrer" [attr.aria-label]="language.isEnglish() ? 'View ' + project.name + ' ' + link.label + ' on GitHub' : 'Ver ' + project.name + ' ' + link.label + ' no GitHub'">
-                    {{ link.label }} <span aria-hidden="true">↗</span>
-                  </a>
-                }
-              </div>
+          <div class="case-copy">
+            <p class="case-category">{{ language.isEnglish() ? project.categoryEn : project.categoryPt }}</p>
+            <h3 [id]="'project-' + project.id">{{ project.name }}</h3>
+            <p class="case-description">{{ language.isEnglish() ? project.descriptionEn : project.descriptionPt }}</p>
+            <ul class="case-highlights">
+              @for (highlight of (language.isEnglish() ? project.highlightsEn : project.highlightsPt).slice(0, 2); track $index) {
+                <li>{{ highlight }}</li>
+              }
+            </ul>
+            <div class="case-stack" [attr.aria-label]="language.isEnglish() ? 'Technologies' : 'Tecnologias'">
+              @for (technology of project.stack; track technology) { <span>{{ technology }}</span> }
             </div>
-
-            <div class="case-gallery">
-              <div class="gallery-stage" [class.gallery-stage--portrait]="activeImage(project).portrait">
-                <div class="gallery-chrome" aria-hidden="true"><i></i><i></i><i></i><span>{{ project.name.toLowerCase() }} / {{ activeIndex(project) + 1 }}—0{{ project.images.length }}</span></div>
-                <img [src]="activeImage(project).src"
-                  [alt]="language.isEnglish() ? activeImage(project).altEn : activeImage(project).altPt"
-                  loading="lazy" decoding="async" />
-              </div>
-              <div class="gallery-footer">
-                <p aria-live="polite">{{ language.isEnglish() ? activeImage(project).captionEn : activeImage(project).captionPt }}</p>
-                <a class="gallery-open" [href]="activeImage(project).src" target="_blank" rel="noopener noreferrer" [attr.aria-label]="language.isEnglish() ? 'Open full-size image: ' + activeImage(project).captionEn : 'Abrir imagem completa: ' + activeImage(project).captionPt">{{ language.isEnglish() ? 'Full image' : 'Ampliar' }} ↗</a>
-                <div class="gallery-tabs" [attr.aria-label]="language.isEnglish() ? project.name + ' screenshots' : 'Telas do ' + project.name">
-                  @for (shot of project.images; track shot.src; let index = $index) {
-                    <button type="button" [class.active]="activeIndex(project) === index"
-                      [attr.aria-pressed]="activeIndex(project) === index"
-                      [attr.aria-label]="language.isEnglish() ? 'Show ' + shot.captionEn : 'Mostrar ' + shot.captionPt"
-                      (click)="selectImage(project, index)">0{{ index + 1 }}</button>
+            @if (project.highlightsPt.length > 2) {
+              <details class="project-details">
+                <summary>{{ language.isEnglish() ? 'Implementation details' : 'Detalhes da implementação' }}</summary>
+                <ul>
+                  @for (highlight of (language.isEnglish() ? project.highlightsEn : project.highlightsPt).slice(2); track $index) {
+                    <li>{{ highlight }}</li>
                   }
-                </div>
-              </div>
+                </ul>
+                @if (project.notePt) { <p>{{ language.isEnglish() ? project.noteEn : project.notePt }}</p> }
+              </details>
+            }
+            <div class="case-links">
+              @for (link of project.links ?? []; track link.url) {
+                <a [href]="link.url" [attr.download]="link.url.startsWith('assets/') ? 'Jungle_Architecture.md' : null" target="_blank" rel="noopener noreferrer">{{ language.isEnglish() ? (link.labelEn ?? link.label) : link.label }} <span aria-hidden="true">↗</span><span class="sr-only"> — {{ project.name }}</span></a>
+              }
+            </div>
+          </div>
+          <div class="case-gallery">
+            <div class="gallery-stage" [class.gallery-stage--portrait]="activeImage(project).portrait" [class.gallery-stage--diagram]="activeImage(project).diagram">
+              <img [src]="activeImage(project).src"
+                [alt]="language.isEnglish() ? activeImage(project).altEn : activeImage(project).altPt"
+                loading="lazy" decoding="async" width="900" height="560" />
+            </div>
+            <div class="gallery-footer">
+              <p aria-live="polite">{{ language.isEnglish() ? activeImage(project).captionEn : activeImage(project).captionPt }}</p>
+              <a class="gallery-open" [href]="activeImage(project).src" target="_blank" rel="noopener noreferrer" [attr.aria-label]="language.isEnglish() ? 'Open full-size image: ' + activeImage(project).captionEn : 'Abrir imagem completa: ' + activeImage(project).captionPt">{{ language.isEnglish() ? 'Enlarge' : 'Ampliar' }} ↗</a>
+            </div>
+            <div class="gallery-tabs" [attr.aria-label]="language.isEnglish() ? project.name + ' images' : 'Imagens do ' + project.name">
+              @for (shot of project.images; track shot.src; let index = $index) {
+                <button type="button" [class.active]="activeIndex(project) === index"
+                  [attr.aria-pressed]="activeIndex(project) === index"
+                  [attr.aria-label]="language.isEnglish() ? 'Show ' + shot.captionEn : 'Mostrar ' + shot.captionPt"
+                  (click)="selectImage(project, index)">{{ language.isEnglish() ? shot.captionEn : shot.captionPt }}</button>
+              }
             </div>
           </div>
         </article>

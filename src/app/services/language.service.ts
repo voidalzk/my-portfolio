@@ -34,8 +34,8 @@ export class LanguageService {
       : 'Gabriel Voidaleski | Desenvolvedor Full Stack';
 
     const description = language === 'en'
-      ? 'Gabriel Voidaleski, Full Stack Developer experienced in APIs, Node.js, Vue.js, PHP, React, databases and AI integrations.'
-      : 'Portfólio de Gabriel Voidaleski, desenvolvedor Full Stack com experiência em APIs, Node.js, Vue.js, PHP, React, bancos de dados e integrações com IA.';
+      ? 'Gabriel Voidaleski, Full Stack Developer working with Go, Vue.js, APIs, automation and data. Explore backend, web and mobile projects.'
+      : 'Portfólio de Gabriel Voidaleski, desenvolvedor Full Stack com atuação em Go, Vue.js, APIs, automação e dados. Projetos backend, web e mobile com código e arquitetura.';
     this.document.querySelector('meta[name="description"]')?.setAttribute('content', description);
     this.document.querySelector('meta[property="og:title"]')?.setAttribute('content', this.document.title);
     this.document.querySelector('meta[property="og:description"]')?.setAttribute('content', description);
