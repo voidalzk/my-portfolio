@@ -28,7 +28,7 @@ import { LanguageService } from '../../services/language.service';
             (click)="toggleTheme()"
             [attr.aria-label]="(isDark$ | async) ? (language.isEnglish() ? 'Activate light theme' : 'Ativar tema claro') : (language.isEnglish() ? 'Activate dark theme' : 'Ativar tema escuro')"
           >
-            <span aria-hidden="true">{{ (isDark$ | async) ? '☼' : '◐' }}</span>
+            <span class="icon" [class.icon-sun]="isDark$ | async" [class.icon-moon]="!(isDark$ | async)" aria-hidden="true"></span>
           </button>
           <button
             class="menu-toggle"
@@ -49,7 +49,7 @@ import { LanguageService } from '../../services/language.service';
           <li><a href="#contato" (click)="closeMenu()">{{ language.isEnglish() ? 'Contact' : 'Contato' }}</a></li>
           <li>
             <a class="resume-link" [href]="language.resumeUrl()" [attr.download]="language.isEnglish() ? 'Gabriel_Voidaleski_CV_EN.pdf' : 'Gabriel_Voidaleski_CV_PT.pdf'" (click)="closeMenu()">
-              {{ language.isEnglish() ? 'Resume' : 'Currículo' }} <span aria-hidden="true">↓</span>
+              {{ language.isEnglish() ? 'Resume' : 'Currículo' }} <span class="icon icon-down" aria-hidden="true"></span>
             </a>
           </li>
         </ul>

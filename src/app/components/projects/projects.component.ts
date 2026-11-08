@@ -66,7 +66,7 @@ export class ProjectsComponent {
       links: [
         { label: 'GitHub', url: 'https://github.com/voidalzk/jungle-wagering-processor' },
         { label: 'Diagramas e decisões', labelEn: 'Diagrams and decisions', url: 'https://github.com/voidalzk/jungle-wagering-processor/blob/main/docs/architecture-diagrams.md' },
-        { label: 'Markdown ↓', url: 'assets/projects/jungle/architecture-diagrams.md' },
+        { label: 'Markdown', url: 'assets/projects/jungle/architecture-diagrams.md' },
       ],
     },
     {

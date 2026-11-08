@@ -11,7 +11,7 @@ import { LanguageService } from '../../services/language.service';
         <div>
           <h3>{{ language.isEnglish() ? 'Systems Analysis and Development' : 'Análise e Desenvolvimento de Sistemas' }}</h3>
           <p>{{ language.isEnglish() ? 'Federal University of Paraná · Technology degree · Completed Aug 2026' : 'Universidade Federal do Paraná · Tecnólogo · Concluído em 08/2026' }}</p>
-          <a href="#project-appunture">{{ language.isEnglish() ? 'Capstone project: Appunture' : 'TCC: Appunture' }} ↗</a>
+          <a href="#project-appunture">{{ language.isEnglish() ? 'Capstone project: Appunture' : 'TCC: Appunture' }} <span class="icon icon-external" aria-hidden="true"></span></a>
           <p class="english">{{ language.isEnglish() ? 'Advanced English · English Live Corporate, 2022.' : 'Inglês avançado · English Live Corporate, 2022.' }}</p>
         </div>
       </div>

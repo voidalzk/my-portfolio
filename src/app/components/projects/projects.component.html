@@ -37,7 +37,7 @@
             }
             <div class="case-links">
               @for (link of project.links ?? []; track link.url) {
-                <a [href]="link.url" [attr.download]="link.url.startsWith('assets/') ? 'Jungle_Architecture.md' : null" target="_blank" rel="noopener noreferrer">{{ language.isEnglish() ? (link.labelEn ?? link.label) : link.label }} <span aria-hidden="true">↗</span><span class="sr-only"> — {{ project.name }}</span></a>
+                <a [href]="link.url" [attr.download]="link.url.startsWith('assets/') ? 'Jungle_Architecture.md' : null" target="_blank" rel="noopener noreferrer">{{ language.isEnglish() ? (link.labelEn ?? link.label) : link.label }} <span class="icon" [class.icon-down]="link.url.startsWith('assets/')" [class.icon-external]="!link.url.startsWith('assets/')" aria-hidden="true"></span><span class="sr-only"> — {{ project.name }}</span></a>
               }
             </div>
           </div>
@@ -49,7 +49,7 @@
             </div>
             <div class="gallery-footer">
               <p aria-live="polite">{{ language.isEnglish() ? activeImage(project).captionEn : activeImage(project).captionPt }}</p>
-              <a class="gallery-open" [href]="activeImage(project).src" target="_blank" rel="noopener noreferrer" [attr.aria-label]="language.isEnglish() ? 'Open full-size image: ' + activeImage(project).captionEn : 'Abrir imagem completa: ' + activeImage(project).captionPt">{{ language.isEnglish() ? 'Enlarge' : 'Ampliar' }} ↗</a>
+              <a class="gallery-open" [href]="activeImage(project).src" target="_blank" rel="noopener noreferrer" [attr.aria-label]="language.isEnglish() ? 'Open full-size image: ' + activeImage(project).captionEn : 'Abrir imagem completa: ' + activeImage(project).captionPt">{{ language.isEnglish() ? 'Enlarge' : 'Ampliar' }} <span class="icon icon-external" aria-hidden="true"></span></a>
             </div>
             <div class="gallery-tabs" [attr.aria-label]="language.isEnglish() ? project.name + ' images' : 'Imagens do ' + project.name">
               @for (shot of project.images; track shot.src; let index = $index) {
