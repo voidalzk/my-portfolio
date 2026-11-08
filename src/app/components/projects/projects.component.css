@@ -24,7 +24,7 @@ h3 { margin: 0; font-family: var(--display); font-size: clamp(1.9rem, 3.2vw, 2.7
 .gallery-stage { display: flex; height: 300px; align-items: center; justify-content: center; overflow: hidden; background: var(--signal-soft); border: 1px solid var(--line); border-radius: 5px; }
 .gallery-stage img { width: 100%; height: 100%; object-fit: contain; }
 .gallery-stage--portrait img { width: auto; max-width: 100%; }
-.gallery-stage--diagram { background: #f8faf7; }
+.gallery-stage--diagram { background: var(--paper-raised); }
 .gallery-footer { display: flex; justify-content: space-between; gap: 1rem; margin-top: .7rem; font-size: .72rem; }
 .gallery-footer p { margin: 0; color: var(--ink-soft); }
 .gallery-open { color: var(--signal-deep); white-space: nowrap; }

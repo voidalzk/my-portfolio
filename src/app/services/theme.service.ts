@@ -42,6 +42,8 @@ export class ThemeService {
   private updateThemeClass(isDark: boolean) {
     if (isPlatformBrowser(this.platformId)) {
       document.documentElement.classList.toggle('dark-theme', isDark);
+      const background = window.getComputedStyle(document.documentElement).getPropertyValue('--paper').trim();
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', background);
     }
   }
 
