@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 
 interface ProjectImage {
@@ -23,6 +23,7 @@ interface PortfolioProject {
   highlightsEn: string[];
   stack: string[];
   images: ProjectImage[];
+  documentUrl?: string;
   links?: { label: string; labelEn?: string; url: string }[];
   notePt?: string;
   noteEn?: string;
@@ -65,9 +66,8 @@ export class ProjectsComponent {
       ],
       links: [
         { label: 'GitHub', url: 'https://github.com/voidalzk/jungle-wagering-processor' },
-        { label: 'Diagramas e decisões', labelEn: 'Diagrams and decisions', url: 'https://github.com/voidalzk/jungle-wagering-processor/blob/main/docs/architecture-diagrams.md' },
-        { label: 'Markdown', url: 'assets/projects/jungle/architecture-diagrams.md' },
       ],
+      documentUrl: 'assets/projects/jungle/architecture-diagrams.md',
     },
     {
       id: 'appunture', number: '02', name: 'Appunture',
@@ -114,10 +114,11 @@ export class ProjectsComponent {
         { src: 'assets/projects/flyhigh/checkout.png', altPt: 'Checkout de reserva de voo com opção de usar milhas no FlyHigh', altEn: 'FlyHigh flight checkout with a miles payment option', captionPt: 'Reserva e milhas', captionEn: 'Booking and miles' },
         { src: 'assets/projects/flyhigh/landing.png', altPt: 'Página inicial azul do sistema FlyHigh', altEn: 'Blue FlyHigh landing page', captionPt: 'Página inicial', captionEn: 'Landing page' },
         { src: 'assets/projects/flyhigh/operations.png', altPt: 'Painel do funcionário para operação de voos no FlyHigh', altEn: 'FlyHigh employee dashboard for flight operations', captionPt: 'Painel operacional', captionEn: 'Operations dashboard' },
-        { src: 'assets/projects/flyhigh/architecture.svg', altPt: 'Diagrama da arquitetura do FlyHigh com gateway, microsserviços, RabbitMQ e bancos de dados', altEn: 'FlyHigh architecture diagram with gateway, microservices, RabbitMQ and databases', captionPt: 'Arquitetura do backend', captionEn: 'Backend architecture' },
-        { src: 'assets/projects/flyhigh/saga.svg', altPt: 'Diagrama da saga de reserva de voo com etapas e compensações', altEn: 'Flight booking saga diagram with steps and compensations', captionPt: 'Saga da reserva', captionEn: 'Booking saga' },
+        { src: 'assets/projects/flyhigh/architecture.svg', altPt: 'Diagrama da arquitetura do FlyHigh com gateway, microsserviços, RabbitMQ e bancos de dados', altEn: 'FlyHigh architecture diagram with gateway, microservices, RabbitMQ and databases', captionPt: 'Arquitetura do backend', captionEn: 'Backend architecture', diagram: true },
+        { src: 'assets/projects/flyhigh/saga.svg', altPt: 'Diagrama da saga de reserva de voo com etapas e compensações', altEn: 'Flight booking saga diagram with steps and compensations', captionPt: 'Saga da reserva', captionEn: 'Booking saga', diagram: true },
       ],
       links: [{ label: 'GitHub', url: 'https://github.com/DAC-Empresa-Aerea/empresa-aerea' }],
+      documentUrl: 'assets/projects/flyhigh/architecture-and-saga.md',
     },
     {
       id: 'maintenance', number: '04', name: 'MaintenanceApp',
@@ -146,6 +147,39 @@ export class ProjectsComponent {
   ];
 
   private readonly selectedImages: Record<string, number> = {};
+  readonly readerProject = signal<PortfolioProject | null>(null);
+  readonly readerImage = signal<ProjectImage | null>(null);
+  readonly zoomed = signal(false);
+  readonly documentHtml = signal('');
+  readonly documentError = signal(false);
+  private requestId = 0;
+
+  openReader(dialog: HTMLDialogElement, project: PortfolioProject, image?: ProjectImage): void {
+    this.readerProject.set(project);
+    this.readerImage.set(image ?? null);
+    this.zoomed.set(false);
+    this.documentHtml.set('');
+    this.documentError.set(false);
+    const id = ++this.requestId;
+    dialog.showModal();
+    if (!image && project.documentUrl) void this.readDocument(project.documentUrl, id);
+  }
+
+  private async readDocument(path: string, id: number): Promise<void> {
+    try {
+      const [response, { marked }] = await Promise.all([fetch(path), import('marked')]);
+      if (!response.ok) throw new Error('Document unavailable');
+      const html = marked.parse(await response.text(), {
+        async: false,
+        walkTokens(token) {
+          if (token.type === 'image') token.href = new URL(token.href, response.url).href;
+        },
+      });
+      if (this.requestId === id) this.documentHtml.set(html);
+    } catch {
+      if (this.requestId === id) this.documentError.set(true);
+    }
+  }
 
   activeIndex(project: PortfolioProject): number {
     return this.selectedImages[project.id] ?? 0;

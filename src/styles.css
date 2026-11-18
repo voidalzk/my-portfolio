@@ -51,6 +51,15 @@ img { display: block; max-width: 100%; }
 .button-primary { border-color: var(--ink); background: var(--ink); color: var(--paper); }
 .button-secondary { background: transparent; }
 .button:hover { border-color: var(--signal); }
+html:has(.project-reader[open]) { overflow: hidden; }
+.architecture-document { overflow-wrap: anywhere; }
+.architecture-document h1, .architecture-document h2 { font-family: var(--display); font-weight: 500; line-height: 1.17; }
+.architecture-document h1 { margin: 0 0 1.4rem; font-size: clamp(1.6rem, 4vw, 2.5rem); }
+.architecture-document h2 { margin-top: 2rem; }
+.architecture-document img { width: 100%; border: 1px solid var(--line); border-radius: 4px; }
+.architecture-document pre { overflow-x: auto; padding: .8rem; background: var(--paper-raised); }
+.architecture-document summary { cursor: pointer; }
+.architecture-document details { border-bottom: 1px solid var(--line); padding-bottom: .8rem; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 @media(max-width: 640px) { .container { width: calc(100% - 2rem); } }
 @media(prefers-reduced-motion: reduce) {

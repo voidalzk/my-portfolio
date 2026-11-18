@@ -1,7 +1,21 @@
-.hero { padding: clamp(8rem, 14vw, 11rem) 0 clamp(3rem, 6vw, 5rem); }
-.hero-layout { display: block; }
+.hero { padding: clamp(7.8rem, 12vw, 10.8rem) 0 0; }
+.hero-divider { display: block; width: 100%; height: 48px; margin-top: clamp(1.6rem, 4vw, 3.2rem); }
+.hero-divider path { fill: none; stroke: var(--ink-soft); stroke-width: 1; }
+h1 > span { display: inline-block; overflow: hidden; vertical-align: bottom; padding: 0 .06em .06em 0; margin: 0 -.06em -.06em 0; }
+h1 > span > span { display: block; }
+@media (prefers-reduced-motion: no-preference) {
+  h1 > span > span { animation: typeset .75s cubic-bezier(.19, 1, .22, 1) backwards; }
+  h1 > span:nth-child(2) > span { animation-delay: .1s; }
+  .hero-lead, .hero-actions { animation: settle .55s ease-out .15s backwards; }
+  .hero-actions { animation-delay: .23s; }
+  .hero-actions .icon { transition: transform .2s ease; }
+  .hero-actions a:is(:hover, :focus-visible) .icon-down { transform: translateY(3px); }
+  .hero-actions a:is(:hover, :focus-visible) .icon-external { transform: translate(2px,-2px); }
+  @keyframes typeset { from { transform: translateY(110%) rotate(2deg); } }
+  @keyframes settle { from { opacity: 0; transform: translateY(.35rem); } }
+}
 .eyebrow { margin: 0 0 1rem; color: var(--ink-soft); font-family: var(--mono); font-size: .76rem; }
-h1 { margin: 0; font-family: var(--display); font-size: clamp(2.8rem, 6vw, 4.8rem); font-weight: 500; letter-spacing: -.055em; line-height: 1.06; }
+h1 { margin: 0; font-family: var(--display); font-size: clamp(2.5rem, 8.5vw, 7.4rem); font-weight: 500; letter-spacing: -.055em; line-height: 1.06; }
 .hero-lead { max-width: 640px; margin: 1.4rem 0 0; color: var(--ink-soft); font-size: 1.1rem; line-height: 1.75; }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin-top: 1.8rem; }
 .hero-github { margin-left: .5rem; font-size: .9rem; text-underline-offset: .25rem; }

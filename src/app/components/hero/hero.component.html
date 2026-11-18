@@ -2,7 +2,7 @@
   <div class="container hero-layout">
     <div class="hero-copy">
       <p class="eyebrow">{{ language.isEnglish() ? 'Full Stack Developer · Curitiba, Brazil' : 'Desenvolvedor Full Stack · Curitiba, PR' }}</p>
-      <h1 id="hero-title">Gabriel Voidaleski</h1>
+      <h1 id="hero-title"><span><span>Gabriel</span></span>&ngsp;<span><span>Voidaleski</span></span></h1>
       <p class="hero-lead">
         {{ language.isEnglish()
           ? 'I build full stack applications with Vue.js, Java and Node.js, along with APIs, integrations and data processing automation.'
@@ -14,5 +14,9 @@
         <a class="hero-github" href="https://github.com/voidalzk" target="_blank" rel="noopener noreferrer">GitHub <span class="icon icon-external" aria-hidden="true"></span></a>
       </div>
     </div>
+    <svg class="hero-divider" viewBox="0 0 1000 48" preserveAspectRatio="none"
+      aria-hidden="true" focusable="false" (pointerenter)="touchLine($event)" (pointerdown)="touchLine($event)">
+      <path #strand d="M0 24 H1000" vector-effect="non-scaling-stroke" />
+    </svg>
   </div>
 </section>

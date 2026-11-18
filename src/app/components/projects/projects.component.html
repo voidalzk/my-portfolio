@@ -2,7 +2,6 @@
   <div class="container">
     <div class="projects-heading">
       <h2 id="projects-title" class="section-heading">{{ language.isEnglish() ? 'Projects' : 'Projetos' }}</h2>
-      <span>{{ language.isEnglish() ? 'Code, implementation and architecture' : 'Código, implementação e arquitetura' }}</span>
     </div>
     <nav class="project-index" [attr.aria-label]="language.isEnglish() ? 'Project index' : 'Índice de projetos'">
       @for (project of projects; track project.id) {
@@ -12,10 +11,12 @@
     <div class="project-list">
       @for (project of projects; track project.id) {
         <article class="case-study" [attr.aria-labelledby]="'project-' + project.id">
-          <div class="case-copy">
+          <div class="case-intro">
             <p class="case-category">{{ language.isEnglish() ? project.categoryEn : project.categoryPt }}</p>
             <h3 [id]="'project-' + project.id">{{ project.name }}</h3>
             <p class="case-description">{{ language.isEnglish() ? project.descriptionEn : project.descriptionPt }}</p>
+          </div>
+          <div class="case-copy">
             <ul class="case-highlights">
               @for (highlight of (language.isEnglish() ? project.highlightsEn : project.highlightsPt).slice(0, 2); track $index) {
                 <li>{{ highlight }}</li>
@@ -37,19 +38,23 @@
             }
             <div class="case-links">
               @for (link of project.links ?? []; track link.url) {
-                <a [href]="link.url" [attr.download]="link.url.startsWith('assets/') ? 'Jungle_Architecture.md' : null" target="_blank" rel="noopener noreferrer">{{ language.isEnglish() ? (link.labelEn ?? link.label) : link.label }} <span class="icon" [class.icon-down]="link.url.startsWith('assets/')" [class.icon-external]="!link.url.startsWith('assets/')" aria-hidden="true"></span><span class="sr-only"> — {{ project.name }}</span></a>
+                <a [href]="link.url" target="_blank" rel="noopener noreferrer">{{ language.isEnglish() ? (link.labelEn ?? link.label) : link.label }} <span class="icon icon-external" aria-hidden="true"></span><span class="sr-only"> — {{ project.name }}</span></a>
+              }
+              @if (project.documentUrl) {
+                <a [href]="project.documentUrl" aria-haspopup="dialog" (click)="$event.preventDefault(); openReader(reader, project)">{{ language.isEnglish() ? 'Read architecture notes (PT)' : 'Ler documentação' }}</a>
               }
             </div>
           </div>
           <div class="case-gallery">
             <div class="gallery-stage" [class.gallery-stage--portrait]="activeImage(project).portrait" [class.gallery-stage--diagram]="activeImage(project).diagram">
-              <img [src]="activeImage(project).src"
-                [alt]="language.isEnglish() ? activeImage(project).altEn : activeImage(project).altPt"
-                loading="lazy" decoding="async" width="900" height="560" />
+              @for (shot of [activeImage(project)]; track shot.src) {
+                <img [src]="shot.src" [alt]="language.isEnglish() ? shot.altEn : shot.altPt"
+                  loading="lazy" decoding="async" width="900" height="560" />
+              }
             </div>
             <div class="gallery-footer">
               <p aria-live="polite">{{ language.isEnglish() ? activeImage(project).captionEn : activeImage(project).captionPt }}</p>
-              <a class="gallery-open" [href]="activeImage(project).src" target="_blank" rel="noopener noreferrer" [attr.aria-label]="language.isEnglish() ? 'Open full-size image: ' + activeImage(project).captionEn : 'Abrir imagem completa: ' + activeImage(project).captionPt">{{ language.isEnglish() ? 'Enlarge' : 'Ampliar' }} <span class="icon icon-external" aria-hidden="true"></span></a>
+              <button class="gallery-open" type="button" aria-haspopup="dialog" (click)="openReader(reader, project, activeImage(project))">{{ language.isEnglish() ? 'Enlarge' : 'Ampliar' }}</button>
             </div>
             <div class="gallery-tabs" [attr.aria-label]="language.isEnglish() ? project.name + ' images' : 'Imagens do ' + project.name">
               @for (shot of project.images; track shot.src; let index = $index) {
@@ -64,4 +69,33 @@
       }
     </div>
   </div>
+  <dialog #reader class="project-reader" aria-labelledby="reader-title">
+    <header class="reader-header">
+      <strong id="reader-title">{{ readerProject()?.name }}</strong>
+      <button type="button" autofocus (click)="reader.close()">{{ language.isEnglish() ? 'Close' : 'Fechar' }}</button>
+    </header>
+    @if (readerImage(); as shot) {
+      <figure class="reader-figure">
+        <figcaption>{{ language.isEnglish() ? shot.captionEn : shot.captionPt }}
+          <button type="button" [attr.aria-pressed]="zoomed()" (click)="zoomed.set(!zoomed())">
+            {{ zoomed() ? (language.isEnglish() ? 'Fit to window' : 'Ajustar à janela') : (language.isEnglish() ? 'Actual size' : 'Tamanho real') }}
+          </button>
+        </figcaption>
+        <div class="reader-canvas" tabindex="0" [attr.aria-label]="language.isEnglish() ? shot.altEn : shot.altPt">
+          <img [src]="shot.src" [class.full-size]="zoomed()" [alt]="language.isEnglish() ? shot.altEn : shot.altPt" />
+        </div>
+      </figure>
+    } @else if (readerProject()) {
+      <div class="reader-body">
+        @if (documentHtml()) {
+          <div class="architecture-document" lang="pt-BR" [innerHTML]="documentHtml()"></div>
+        } @else {
+          <p role="status">{{ documentError()
+            ? (language.isEnglish() ? 'Could not open the document.' : 'Não foi possível abrir o documento.')
+            : (language.isEnglish() ? 'Loading document…' : 'Carregando documento…') }}</p>
+        }
+        <a [href]="readerProject()?.documentUrl" download>{{ language.isEnglish() ? 'Download Markdown' : 'Baixar Markdown' }}</a>
+      </div>
+    }
+  </dialog>
 </section>
